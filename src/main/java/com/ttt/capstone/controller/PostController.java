@@ -2,6 +2,8 @@ package com.ttt.capstone.controller;
 
 
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.service.PostService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -14,6 +16,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class PostController {
 
 
@@ -36,22 +39,12 @@ public class PostController {
      react -> react + SSR = next.js
  */
 
+    private final PostService postService;
+
     @PostMapping("/posts")
     public Map<String, String> post(@RequestBody @Valid PostCreate request){
-//        log.info("params{} ", params.toString());
-//
-//        if (result.hasErrors()){
-//            List<FieldError> fieldErrors = result.getFieldErrors();
-//            FieldError firstFieldError = fieldErrors.get(0);
-//            String fieldName = firstFieldError.getField();  //title
-//            String defaultMessage = firstFieldError.getDefaultMessage();    //error message
-//
-//            Map<String, String> error = new HashMap<>();
-//            error.put(fieldName, defaultMessage);
-//            return error;
-//        }
-//        db.save(params)
 
+        postService.write(request);
         return Map.of();
     }
 }

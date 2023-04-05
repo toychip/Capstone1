@@ -15,10 +15,31 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    public Post writeNn(PostCreate postCreate){
+        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .build();
+
+        return postRepository.save(post);
+    }
     public void write(PostCreate postCreate){
         // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
-        Post post = new Post(postCreate.getTitle(), postCreate.getContent());
-
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .build();
         postRepository.save(post);
+    }
+
+    public Long writePk(PostCreate postCreate){
+        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .build();
+
+        return post.getId();
     }
 }

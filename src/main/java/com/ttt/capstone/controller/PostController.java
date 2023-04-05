@@ -1,6 +1,7 @@
 package com.ttt.capstone.controller;
 
 
+import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -41,10 +42,24 @@ public class PostController {
 
     private final PostService postService;
 
-    @PostMapping("/posts")
-    public Map<String, String> post(@RequestBody @Valid PostCreate request){
+    @PostMapping("/postsNn")
+//    public Map<String, String> post(@RequestBody @Valid PostCreate request){
+    public Post postNn(@RequestBody @Valid PostCreate request){
 
+        return postService.writeNn(request);
+//        return Map.of();
+    }
+    @PostMapping("/postsPk")
+    public Map postId(@RequestBody @Valid PostCreate request){
+//        저장한 데이터의 primary_id -> response로 응답하기
+//        Client에서는 수신한 id를 글 조회 API를 통해서 데이터를 수신받음
+        Long postId = postService.writePk(request);
+        return Map.of("postId", postId);
+    }
+
+    @PostMapping("/posts")
+//    public Map<String, String> post(@RequestBody @Valid PostCreate request){
+    public void post(@RequestBody @Valid PostCreate request) {
         postService.write(request);
-        return Map.of();
     }
 }

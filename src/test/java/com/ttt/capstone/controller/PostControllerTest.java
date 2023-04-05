@@ -1,7 +1,9 @@
 package com.ttt.capstone.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
+import com.ttt.capstone.request.PostCreate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -29,7 +32,10 @@ class PostControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    PostRepository postRepository;
+    private PostRepository postRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     void clean(){
@@ -44,7 +50,7 @@ class PostControllerTest {
 
         // expected
         mockMvc.perform(post("/posts")
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(APPLICATION_JSON)
                         .content("{\"title\": \"제목입니다.\",\"content\" :\"내용입니다.\"}")
 //                        .param("title", "글 제목")
 //                        .param("content", "글 내용입니다 하하")
@@ -57,12 +63,19 @@ class PostControllerTest {
     @Test
     @DisplayName("/posts 요청시 title 값은 필수다.")
     void test2() throws Exception{
+        // given
+        PostCreate request = PostCreate.builder()
+//                .title("제목입니다.")
+                .content("내용입니다.")
+                .build();
+        String json = objectMapper.writeValueAsString(request);
+
         // expected
         mockMvc.perform(post("/posts")
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(APPLICATION_JSON)
 //                {"title:""}
 //                {"title:null}도 검증을 해줄지? ? - 해줌
-                        .content("{\"title\": null, \"content\": \"내용입니다.\"}")
+                        .content(json)
                 )
                 .andExpect(status().isBadRequest())
 //                .andExpect(MockMvcResultMatchers.content().string("Hello World"))
@@ -76,10 +89,24 @@ class PostControllerTest {
     @Test
     @DisplayName("/posts 요청시 DB에 값이 저장된다.")
     void test3() throws Exception{
+        //given
+        PostCreate requestPrev = new PostCreate("제목입니다.", "내용입니다.");
+        PostCreate request = PostCreate.builder()
+                .title("제목입니다.")
+                .content("내용입니다.")
+                .build();
+
+
+//        ObjectMapper objectMapper = new ObjectMapper();  Spring에서 bean에 기본적으로 적용시켜줌
+        String json = objectMapper.writeValueAsString(request);
+
+        System.out.println(json);
+
         // when
         mockMvc.perform(post("/posts")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"title\": \"제목입니다.\", \"content\": \"내용입니다.\"}")
+                                .contentType(APPLICATION_JSON)
+//                                .content("{\"title\": \"제목입니다.\", \"content\": \"내용입니다.\"}")
+                                .content(json)
                 )
                 .andExpect(status().isOk())
                 .andDo(print());

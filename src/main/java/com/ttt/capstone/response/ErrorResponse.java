@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 public class ErrorResponse {
 
     private final String code;

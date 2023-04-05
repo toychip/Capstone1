@@ -42,14 +42,14 @@ public class PostController {
 
     private final PostService postService;
 
-    @PostMapping("/postsNn")
+    @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
     public Post postNn(@RequestBody @Valid PostCreate request){
 
         return postService.writeNn(request);
 //        return Map.of();
     }
-    @PostMapping("/postsPk")
+    @PostMapping("/postsPk")    // 글 pk로 가져오기
     public Map postId(@RequestBody @Valid PostCreate request){
 //        저장한 데이터의 primary_id -> response로 응답하기
 //        Client에서는 수신한 id를 글 조회 API를 통해서 데이터를 수신받음
@@ -62,4 +62,40 @@ public class PostController {
     public void post(@RequestBody @Valid PostCreate request) {
         postService.write(request);
     }
+
+    /*
+    /posts -> 글 전체 조회(검색 + 페이징)
+    /posts/{postid} -> 글 한개만 조회
+     */
+
+    @GetMapping("/posts/{postId}")
+    public Post get(@PathVariable(name = "postId") Long id){
+        Post post = postService.get(id);
+        return post;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

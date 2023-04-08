@@ -45,13 +45,14 @@ public class PostController {
 
     @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
-    public Post postNn(@RequestBody @Valid PostCreate request){
+    public Post postNn(@RequestBody @Valid PostCreate request) {
 
         return postService.writeNn(request);
 //        return Map.of();
     }
+
     @PostMapping("/postsPk")    // 글 pk로 가져오기
-    public Map postId(@RequestBody @Valid PostCreate request){
+    public Map postId(@RequestBody @Valid PostCreate request) {
 //        저장한 데이터의 primary_id -> response로 응답하기
 //        Client에서는 수신한 id를 글 조회 API를 통해서 데이터를 수신받음
         Long postId = postService.writePk(request);
@@ -70,12 +71,20 @@ public class PostController {
      */
 
     @GetMapping("/posts/{postId}")
-    public PostResponse get(@PathVariable(name = "postId") Long id){
-        PostResponse response = postService.get(id);
+    public PostResponse get(@PathVariable Long postId) {
+
+        return postService.get(postId);
         // 응답 전용 클래스를 만드는 것이 좋다.
-        return response;
     }
 
+    //조회 API
+    // 여러개의 글 조회 API (1개의 글 Post을 가져오는 기능)
+    // /posts
+
+    @GetMapping("/posts")
+    public List<PostResponse> getList() {
+        return postService.getList();
+    }
 }
 
 

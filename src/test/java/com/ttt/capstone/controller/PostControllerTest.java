@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -141,6 +142,37 @@ class PostControllerTest {
                 .andExpect(jsonPath("$.id").value(post.getId()))
                 .andExpect(jsonPath("$.title").value("1234567890"))
                 .andExpect(jsonPath("$.content").value("bar"))
+                .andDo(print());
+        //then
+    }
+
+    @Test
+    @DisplayName("글 여러개 조회")
+    void test5() throws Exception {
+        //given
+        Post post1 = postRepository.save(Post.builder()
+                .title("title1")
+                .content("content1")
+                .build());
+
+        Post post2 = postRepository.save(Post.builder()
+                .title("title2")
+                .content("content2")
+                .build());
+
+        //expected(when + then)
+        mockMvc.perform(get("/posts/")
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", Matchers.is(2)))
+                .andExpect(jsonPath("$.[0].id").value(post1.getId()))
+                .andExpect(jsonPath("$.[0].title").value("title1"))
+                .andExpect(jsonPath("$.[0].content").value("content1"))
+
+                .andExpect(jsonPath("$.[1].id").value(post2.getId()))
+                .andExpect(jsonPath("$.[1].title").value("title2"))
+                .andExpect(jsonPath("$.[1].content").value("content2"))
+
                 .andDo(print());
         //then
     }

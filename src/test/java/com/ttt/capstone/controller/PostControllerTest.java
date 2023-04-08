@@ -21,6 +21,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -164,7 +169,7 @@ class PostControllerTest {
         mockMvc.perform(get("/posts/")
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()", Matchers.is(2)))
+                .andExpect(jsonPath("$.length()", is(2)))
                 .andExpect(jsonPath("$.[0].id").value(post1.getId()))
                 .andExpect(jsonPath("$.[0].title").value("title1"))
                 .andExpect(jsonPath("$.[0].content").value("content1"))
@@ -173,6 +178,32 @@ class PostControllerTest {
                 .andExpect(jsonPath("$.[1].title").value("title2"))
                 .andExpect(jsonPath("$.[1].content").value("content2"))
 
+                .andDo(print());
+        //then
+    }
+
+    @Test
+    @DisplayName("글 페이징처리")
+    void test6() throws Exception{
+        //given
+        List<Post> resultPosts = IntStream.range(1, 31)
+                .mapToObj(i -> {
+                    return Post.builder()
+                            .title("test title " + i + " 번째")
+                            .content("test content " + i + " 번째")
+                            .build();
+                })
+                .collect(Collectors.toList());
+        postRepository.saveAll(resultPosts);
+
+        mockMvc.perform(get("/posts?page=1&sort=id,desc")
+//        mockMvc.perform(get("/posts?page=1&sort=title,desc")
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", is(3)))
+                .andExpect(jsonPath("$[0].id").value(30))
+                .andExpect(jsonPath("$[0].title").value("test title 30 번째"))
+                .andExpect(jsonPath("$[0].content").value("test content 30 번째"))
                 .andDo(print());
         //then
     }

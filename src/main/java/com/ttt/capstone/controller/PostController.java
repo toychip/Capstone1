@@ -3,6 +3,7 @@ package com.ttt.capstone.controller;
 
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.response.PostResponse;
 import com.ttt.capstone.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -69,9 +70,10 @@ public class PostController {
      */
 
     @GetMapping("/posts/{postId}")
-    public Post get(@PathVariable(name = "postId") Long id){
-        Post post = postService.get(id);
-        return post;
+    public PostResponse get(@PathVariable(name = "postId") Long id){
+        PostResponse response = postService.get(id);
+        // 응답 전용 클래스를 만드는 것이 좋다.
+        return response;
     }
 
 }

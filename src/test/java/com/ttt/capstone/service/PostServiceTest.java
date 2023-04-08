@@ -3,6 +3,7 @@ package com.ttt.capstone.service;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.response.PostResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,14 +53,17 @@ class PostServiceTest {
                 .build();
         postRepository.save(requestPost);
 
+
+
+
         //when
-        Post post = postService.get(requestPost.getId());
+        PostResponse response = postService.get(requestPost.getId());
 
         //then
-        assertNotNull(post);
+        assertNotNull(response);
         assertEquals(1L, postRepository.count());
-        assertEquals("foo", post.getTitle());
-        assertEquals("bar", post.getContent());
+        assertEquals("foo", response.getTitle());
+        assertEquals("bar", response.getContent());
 
     }
 }

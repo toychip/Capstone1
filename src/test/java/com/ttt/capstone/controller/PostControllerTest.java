@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -57,7 +59,7 @@ class PostControllerTest {
 //                        .param("content", "글 내용입니다 하하")
                 )   // application/json
                 .andExpect(status().isOk())
-                .andExpect(content().string("{}"))
+                .andExpect(content().string(""))
                 .andDo(print());
     }
 
@@ -73,16 +75,16 @@ class PostControllerTest {
 
         // expected
         mockMvc.perform(post("/posts")
-                        .contentType(APPLICATION_JSON)
+                                .contentType(APPLICATION_JSON)
 //                {"title:""}
 //                {"title:null}도 검증을 해줄지? ? - 해줌
                         .content(json)
                 )
                 .andExpect(status().isBadRequest())
 //                .andExpect(MockMvcResultMatchers.content().string("Hello World"))
-                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.code").value(HttpStatus.BAD_REQUEST.toString()))
                 .andExpect(jsonPath("$.message").value("잘못된 요청입니다."))
-                .andExpect(jsonPath("$.validation.title").value("타이틀을 입력해주세요."))
+                .andExpect(jsonPath("$.validation.title").value("타이틀을 입력하세요."))
 //                                              json의 타이틀이 오른쪽 value 값으로 내려오느냐?
                 .andDo(print());
     }
@@ -100,9 +102,7 @@ class PostControllerTest {
 
 //        ObjectMapper objectMapper = new ObjectMapper();  Spring에서 bean에 기본적으로 적용시켜줌
         String json = objectMapper.writeValueAsString(request);
-
         System.out.println(json);
-
         // when
         mockMvc.perform(post("/posts")
                                 .contentType(APPLICATION_JSON)
@@ -123,8 +123,14 @@ class PostControllerTest {
     @DisplayName("글 1개 조회")
     void test4() throws Exception {
         //given
+
+        // 클라이언트 요구 사항
+        // json응답에서 title값 길이를 최대 10글자로 해주세요.
+
+        // Post Entity와 PostResponse class 같은 형식이기 때문에 그대로 썼음
+
         Post post = Post.builder()
-                .title("foo")
+                .title("123456789012345")
                 .content("bar")
                 .build();
         postRepository.save(post);
@@ -133,7 +139,7 @@ class PostControllerTest {
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(post.getId()))
-                .andExpect(jsonPath("$.title").value("foo"))
+                .andExpect(jsonPath("$.title").value("1234567890"))
                 .andExpect(jsonPath("$.content").value("bar"))
                 .andDo(print());
         //then

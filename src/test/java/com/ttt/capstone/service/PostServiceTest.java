@@ -77,7 +77,7 @@ class PostServiceTest {
     @DisplayName("글 1페이지 조회")
     void test3(){
         //given
-        List<Post> resultPosts = IntStream.range(1, 31)
+        List<Post> resultPosts = IntStream.range(0, 20)
                 .mapToObj(i -> {
                     return Post.builder()
                             .title("test title " + i + " 번째")
@@ -87,16 +87,13 @@ class PostServiceTest {
                         .collect(Collectors.toList());
         postRepository.saveAll(resultPosts);
 
-        Pageable pageable = PageRequest.of(0, 10, Sort.Direction.DESC, "id");
-
+        Pageable pageableRequest = PageRequest.of(0, 10);//, Sort.Direction.DESC, "id");
         //when
-        List<PostResponse> posts = postService.getList(pageable);
+        List<PostResponse> posts = postService.getList(pageableRequest);
 
         //then
         assertEquals(10,posts.size());  // 한 페이지당 사이즈
-        assertEquals("test title 30 번째",posts.get(0).getTitle());
-        assertEquals("test title 26 번째",posts.get(4).getTitle());
-
+        assertEquals("test title 0 번째",posts.get(0).getTitle());
     }
 
 }

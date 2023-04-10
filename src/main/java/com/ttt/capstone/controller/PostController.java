@@ -3,6 +3,7 @@ package com.ttt.capstone.controller;
 
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostSearch;
 import com.ttt.capstone.response.PostResponse;
 import com.ttt.capstone.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -83,9 +84,14 @@ public class PostController {
     // 여러개의 글 조회 API (1개의 글 Post을 가져오는 기능)
     // /posts
 
+//    @GetMapping("/posts")
+//    public List<PostResponse> getList(@PageableDefault(size = 3) Pageable pageable) {
+//        return postService.getList(pageable);
+//    }
+
     @GetMapping("/posts")
-    public List<PostResponse> getList(@PageableDefault(size = 3) Pageable pageable) {
-        return postService.getList(pageable);
+    public List<PostResponse> getList(@ModelAttribute PostSearch postSearch) {
+        return postService.getList(postSearch);
     }
 }
 

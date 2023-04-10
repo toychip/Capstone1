@@ -154,39 +154,31 @@ class PostControllerTest {
     @Test
     @DisplayName("글 여러개 조회")
     void test5() throws Exception {
-        //given
-        Post post1 = postRepository.save(Post.builder()
-                .title("title1")
-                .content("content1")
-                .build());
+        // given
+        List<Post> requestPosts = IntStream.range(0, 20)
+                .mapToObj(i -> Post.builder()
+                        .title("test title " + i + " 번째")
+                        .content("test content " + i + " 번째")
+                        .build())
+                .collect(Collectors.toList());
 
-        Post post2 = postRepository.save(Post.builder()
-                .title("title2")
-                .content("content2")
-                .build());
+        postRepository.saveAll(requestPosts);
 
-        //expected(when + then)
-        mockMvc.perform(get("/posts/")
+        // expected
+        mockMvc.perform(get("/posts?page=1&size=10")
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()", is(2)))
-                .andExpect(jsonPath("$.[0].id").value(post1.getId()))
-                .andExpect(jsonPath("$.[0].title").value("title1"))
-                .andExpect(jsonPath("$.[0].content").value("content1"))
-
-                .andExpect(jsonPath("$.[1].id").value(post2.getId()))
-                .andExpect(jsonPath("$.[1].title").value("title2"))
-                .andExpect(jsonPath("$.[1].content").value("content2"))
-
+                .andExpect(jsonPath("$.length()", is(10)))
+                .andExpect(jsonPath("$[0].title").value("test title 19 번째"))
+                .andExpect(jsonPath("$[0].content").value("test content 19 번째"))
                 .andDo(print());
-        //then
     }
 
     @Test
     @DisplayName("글 페이징처리")
     void test6() throws Exception{
         //given
-        List<Post> resultPosts = IntStream.range(1, 31)
+        List<Post> resultPosts = IntStream.range(0, 20)
                 .mapToObj(i -> {
                     return Post.builder()
                             .title("test title " + i + " 번째")
@@ -196,14 +188,37 @@ class PostControllerTest {
                 .collect(Collectors.toList());
         postRepository.saveAll(resultPosts);
 
-        mockMvc.perform(get("/posts?page=1&sort=id,desc")
+        mockMvc.perform(get("/posts?page=1&size=10")
 //        mockMvc.perform(get("/posts?page=1&sort=title,desc")
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()", is(3)))
-                .andExpect(jsonPath("$[0].id").value(30))
-                .andExpect(jsonPath("$[0].title").value("test title 30 번째"))
-                .andExpect(jsonPath("$[0].content").value("test content 30 번째"))
+                .andExpect(jsonPath("$.length()", is(10)))
+                .andExpect(jsonPath("$[0].title").value("test title 19 번째"))
+                .andExpect(jsonPath("$[0].content").value("test content 19 번째"))
+                .andDo(print());
+        //then
+    }
+
+    @Test
+    @DisplayName("페이지를 0으로 요청시 첫 페이지 가져오기")
+    void test7() throws Exception{
+        //given
+        List<Post> resultPosts = IntStream.range(0, 20)
+                .mapToObj(i -> Post.builder()
+                            .title("test title " + i + " 번째")
+                            .content("test content " + i + " 번째")
+                            .build())
+                                    .collect(Collectors.toList());
+
+        postRepository.saveAll(resultPosts);
+
+        mockMvc.perform(get("/posts?page=0&size=10")
+//        mockMvc.perform(get("/posts?page=1&sort=title,desc")
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()", is(10)))
+                .andExpect(jsonPath("$[0].title").value("test title 19 번째"))
+                .andExpect(jsonPath("$[0].content").value("test content 19 번째"))
                 .andDo(print());
         //then
     }

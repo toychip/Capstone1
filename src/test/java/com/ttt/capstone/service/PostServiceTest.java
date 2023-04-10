@@ -3,6 +3,7 @@ package com.ttt.capstone.service;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostSearch;
 import com.ttt.capstone.response.PostResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -74,7 +75,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("글 1페이지 조회")
+    @DisplayName("글 여러개 조회")
     void test3(){
         //given
         List<Post> resultPosts = IntStream.range(0, 20)
@@ -87,13 +88,16 @@ class PostServiceTest {
                         .collect(Collectors.toList());
         postRepository.saveAll(resultPosts);
 
-        Pageable pageableRequest = PageRequest.of(0, 10);//, Sort.Direction.DESC, "id");
-        //when
-        List<PostResponse> posts = postService.getList(pageableRequest);
+        // Pageable pageableRequest = PageRequest.of(0, 10);//, Sort.Direction.DESC, "id");
+        PostSearch postSearch = PostSearch.builder()
+                .page(1)
+//                .size(10) - 한페이지당 여러개 보기
+                .build();
 
+        //when
+        List<PostResponse> posts = postService.getList(postSearch);
         //then
         assertEquals(10,posts.size());  // 한 페이지당 사이즈
-        assertEquals("test title 0 번째",posts.get(0).getTitle());
+        assertEquals("test title 19 번째",posts.get(0).getTitle());
     }
-
 }

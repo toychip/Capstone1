@@ -3,6 +3,7 @@ package com.ttt.capstone.service;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostSearch;
 import com.ttt.capstone.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,11 +63,18 @@ public class PostService {
     }
 
     // 여러개의 게시글 조회
-    public List<PostResponse> getList(Pageable pageable) {
+//    public List<PostResponse> getList(Pageable pageable) {
+////        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
+//
+//        return postRepository.getList(1).stream()
+//                .map(post -> new PostResponse(post))
+//                .collect(Collectors.toList());
+//    }
+    public List<PostResponse> getList(PostSearch postSearch) {
 //        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
 
-        return postRepository.getList(1).stream()
-                .map(post -> new PostResponse(post))
+        return postRepository.getList(postSearch).stream()
+                .map(PostResponse::new)
                 .collect(Collectors.toList());
     }
 

@@ -3,6 +3,7 @@ package com.ttt.capstone.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.domian.QPost;
+import com.ttt.capstone.request.PostSearch;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -14,10 +15,12 @@ public class PostRepositoryImpl implements PostRepositoryCustom{
 
 
     @Override
-    public List<Post> getList(int page) {
+    public List<Post> getList(PostSearch postSearch) {
         return jpaQueryFactory.selectFrom(QPost.post)
-                .limit(10)
-                .offset((long)(page - 1) * 10)
+                .limit(postSearch.getSize())
+//                .offset((long)(page - 1) * 10)
+                .offset(postSearch.getOffset())
+                .orderBy(QPost.post.id.desc())
                 .fetch();
     }
 }

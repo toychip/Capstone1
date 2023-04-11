@@ -1,8 +1,10 @@
 package com.ttt.capstone.service;
 
 import com.ttt.capstone.domian.Post;
+import com.ttt.capstone.domian.PostEditor;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostEdit;
 import com.ttt.capstone.request.PostSearch;
 import com.ttt.capstone.response.PostResponse;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -78,5 +81,15 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public void edit(Long id, PostEdit postEdit){
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다. "));
 
+        PostEditor.PostEditorBuilder editorBuitor = post.toEditor();
+        PostEditor postEditor = editorBuitor.title(postEdit.getTitle())
+                .content(postEdit.getContent())
+                .build();
+        post.edit(postEditor);
+    }
 }

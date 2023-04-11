@@ -3,6 +3,7 @@ package com.ttt.capstone.service;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostEdit;
 import com.ttt.capstone.request.PostSearch;
 import com.ttt.capstone.response.PostResponse;
 import org.junit.jupiter.api.Assertions;
@@ -99,5 +100,29 @@ class PostServiceTest {
         //then
         assertEquals(10,posts.size());  // 한 페이지당 사이즈
         assertEquals("test title 19 번째",posts.get(0).getTitle());
+    }
+
+    @Test
+    @DisplayName("글 제목 수정")
+    void test4(){
+        //give
+        Post post = Post.builder()
+                            .title("임준형")
+                            .content("이것은 내용이지롱")
+                            .build();
+
+    postRepository.save(post);
+
+        PostEdit postEdit = PostEdit.builder()
+                .title("임주희")
+                .build();
+
+        //when
+        postService.edit(post.getId(), postEdit);
+
+        //then
+        Post changedPost = postRepository.findById(post.getId())
+                .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다. id=" + post.getId()));
+        Assertions.assertEquals("임주희", changedPost.getTitle());
     }
 }

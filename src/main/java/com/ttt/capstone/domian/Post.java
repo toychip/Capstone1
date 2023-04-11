@@ -27,7 +27,14 @@ public class Post {
         this.content = content;
     }
 
-    //    public String getTitle() {        // 서비스의 정책을 절대 Entity에 넣지 말기
-    //        return this.title.substring(0, 10);
-    //    }
+    public PostEditor.PostEditorBuilder toEditor(){
+        return PostEditor.builder()
+                .title(title)
+                .content(content);
+    }
+
+    public void edit(PostEditor postEditor) {
+        title = postEditor.getTitle();
+        content = postEditor.getContent();
+    }
 }

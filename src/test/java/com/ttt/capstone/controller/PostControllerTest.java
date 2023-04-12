@@ -272,4 +272,24 @@ class PostControllerTest {
         Assertions.assertEquals("임준형", postEdit.getTitle());
         Assertions.assertEquals("저것은 내용이지롱", postEdit.getContent());
     }
+
+    @Test
+    @DisplayName("게시글 삭제")
+    void test9() throws Exception{
+
+        //given
+        Post post = Post.builder()
+                .title("임준형")
+                .content("이것은 내용이지롱")
+                .build();
+
+        postRepository.save(post);
+
+        //expected
+
+        mockMvc.perform(delete("/posts/{postId}", post.getId())
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 }

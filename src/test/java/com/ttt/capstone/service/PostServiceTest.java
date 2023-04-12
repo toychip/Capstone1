@@ -152,4 +152,21 @@ class PostServiceTest {
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다. id=" + post.getId()));
                 Assertions.assertEquals("저것은 내용이지롱", changedPost.getContent());
     }
+
+    @Test
+    @DisplayName("게시글 삭제")
+    void test6(){
+        //give
+        Post post = Post.builder()
+                .title("임준형")
+                .content("이것은 내용이지롱")
+                .build();
+
+        postRepository.save(post);
+
+        //when
+        postService.delete(post.getId());
+
+        Assertions.assertEquals(0, postRepository.count());
+    }
 }

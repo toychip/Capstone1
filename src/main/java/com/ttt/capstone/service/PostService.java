@@ -98,4 +98,12 @@ public class PostService {
 //        patch할때 body에 수정 정보를 내려 줄 것이면 아래와 같게
 //        return new PostResponse(post);
     }
+
+    public void delete(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하ㅓ지 않는 글입니다."));
+
+        // -> 존재하는 경우
+        postRepository.delete(post);
+    }
 }

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @ToString
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 public class PostEdit {
 
     @NotBlank(message = "타이틀을 입력하세요.")

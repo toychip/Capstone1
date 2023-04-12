@@ -114,8 +114,8 @@ class PostServiceTest {
     postRepository.save(post);
 
         PostEdit postEdit = PostEdit.builder()
-                .title("임주희")
-                .content("저것은 내용이지롱")
+                .title(null)   // 이름을 바꿨으므로 내용은 안 보내서 null로 들어온 경우
+                .content("수정된 내용이지롱")
                 .build();
 
         //when
@@ -124,7 +124,8 @@ class PostServiceTest {
         //then
         Post changedPost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다. id=" + post.getId()));
-        Assertions.assertEquals("임주희", changedPost.getTitle());
+        Assertions.assertEquals("임준형", changedPost.getTitle());
+        Assertions.assertEquals("수정된 내용이지롱", changedPost.getContent());
     }
 
     @Test

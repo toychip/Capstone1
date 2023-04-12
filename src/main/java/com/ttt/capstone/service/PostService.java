@@ -90,7 +90,12 @@ public class PostService {
         PostEditor postEditor = editorBuitor.title(postEdit.getTitle())
                 .content(postEdit.getContent())
                 .build();
+
         post.edit(postEditor);
+//            이러한 불편한 상황들 때문에 postEditor를 사용함
+//        post.edit(postEdit.getTitle() != null ? postEdit.getTitle() : post.getTitle(),
+//                postEdit.getContent() != null ? postEdit.getContent() : post.getContent());
+//        patch할때 body에 수정 정보를 내려 줄 것이면 아래와 같게
 //        return new PostResponse(post);
     }
 }

@@ -1,16 +1,13 @@
 package com.ttt.capstone.controller;
 
+import com.ttt.capstone.exception.InvalidRequest;
+import com.ttt.capstone.exception.TttException;
 import com.ttt.capstone.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.*;
 
 @RestControllerAdvice
 public class ExceptionController {
@@ -29,6 +26,24 @@ public class ExceptionController {
             response.addValidation(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
+        return response;
+    }
+
+    @ResponseBody
+    @ExceptionHandler(TttException.class)
+    public ResponseEntity<ErrorResponse> tttException(TttException e){
+        int statusCode = e.getStatusCode();
+
+        ErrorResponse body = ErrorResponse.builder()
+                .code(String.valueOf(statusCode))
+                .message(e.getMessage())
+                .validaion(e.getValidaion())
+                .build();
+
+        // 응답 json validation -> title : 제목에 바보를 포함할 수 없습니다. 작업시작
+
+        ResponseEntity<ErrorResponse> response = ResponseEntity.status(statusCode)
+                .body(body);
         return response;
     }
 }

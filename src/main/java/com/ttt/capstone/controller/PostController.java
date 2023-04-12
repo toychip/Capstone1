@@ -2,6 +2,7 @@ package com.ttt.capstone.controller;
 
 
 import com.ttt.capstone.domian.Post;
+import com.ttt.capstone.exception.InvalidRequest;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.request.PostEdit;
 import com.ttt.capstone.request.PostSearch;
@@ -24,16 +25,6 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class PostController {
-
-
-    /*
-    Http Method
-    GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD, TRACE, CONNECT
-    글 등록
-    POST Method
-     */
-
-
 /*
       SSR -> jsp, thymeleaf, mystache, freemarker 방식
     -> html rendering 서버 렌더링 데이터를 내려줌
@@ -66,13 +57,12 @@ public class PostController {
     @PostMapping("/posts")
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
     public void post(@RequestBody @Valid PostCreate request) {
+
+        request.validate();
+
         postService.write(request);
     }
 
-    /*
-    /posts -> 글 전체 조회(검색 + 페이징)
-    /posts/{postid} -> 글 한개만 조회
-     */
 
     @GetMapping("/posts/{postId}")
     public PostResponse get(@PathVariable Long postId) {

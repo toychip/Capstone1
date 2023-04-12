@@ -91,5 +91,6 @@ public class PostService {
                 .content(postEdit.getContent())
                 .build();
         post.edit(postEditor);
+//        return new PostResponse(post);
     }
 }

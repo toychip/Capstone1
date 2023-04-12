@@ -1,14 +1,13 @@
 package com.ttt.capstone.request;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
-@Builder
 @ToString
+@Setter
+@NoArgsConstructor
 public class PostEdit {
 
     @NotBlank(message = "타이틀을 입력하세요.")

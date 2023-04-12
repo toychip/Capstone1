@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostEdit;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -212,6 +213,7 @@ class PostControllerTest {
 
         postRepository.saveAll(resultPosts);
 
+        //expected
         mockMvc.perform(get("/posts?page=0&size=10")
 //        mockMvc.perform(get("/posts?page=1&sort=title,desc")
                         .contentType(APPLICATION_JSON))
@@ -220,7 +222,54 @@ class PostControllerTest {
                 .andExpect(jsonPath("$[0].title").value("test title 19 번째"))
                 .andExpect(jsonPath("$[0].content").value("test content 19 번째"))
                 .andDo(print());
-        //then
     }
 
+    @Test
+    @DisplayName("글 제목 수정")
+    void test8() throws Exception{
+        //given
+        Post post = Post.builder()
+                .title("임준형")
+                .content("이것은 내용이지롱")
+                .build();
+
+        postRepository.save(post);
+        PostEdit postEdit = PostEdit.builder()
+                .title("임주희")
+                .content("이것은 내용이지롱")
+                .build();
+
+        //expected
+        mockMvc.perform(patch("/posts/{postId}", post.getId())      // PATCH /posts/{postId}
+                        .contentType(APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(postEdit)))
+                .andExpect(status().isOk())
+                .andDo(print());
+        Assertions.assertEquals("임주희", postEdit.getTitle());
+        Assertions.assertEquals("이것은 내용이지롱", postEdit.getContent());
+    }
+    @Test
+    @DisplayName("글 내용 수정")
+    void test8_2() throws Exception{
+        //given
+        Post post = Post.builder()
+                .title("임준형")
+                .content("이것은 내용이지롱")
+                .build();
+
+        postRepository.save(post);
+        PostEdit postEdit = PostEdit.builder()
+                .title("임준형")
+                .content("저것은 내용이지롱")
+                .build();
+
+        //expected
+        mockMvc.perform(patch("/posts/{postId}", post.getId())      // PATCH /posts/{postId}
+                        .contentType(APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(postEdit)))
+                .andExpect(status().isOk())
+                .andDo(print());
+        Assertions.assertEquals("임준형", postEdit.getTitle());
+        Assertions.assertEquals("저것은 내용이지롱", postEdit.getContent());
+    }
 }

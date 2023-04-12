@@ -3,6 +3,7 @@ package com.ttt.capstone.controller;
 
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.request.PostCreate;
+import com.ttt.capstone.request.PostEdit;
 import com.ttt.capstone.request.PostSearch;
 import com.ttt.capstone.response.PostResponse;
 import com.ttt.capstone.service.PostService;
@@ -92,6 +93,11 @@ public class PostController {
     @GetMapping("/posts")
     public List<PostResponse> getList(@ModelAttribute PostSearch postSearch) {
         return postService.getList(postSearch);
+    }
+
+    @PatchMapping("/posts/{postId}")
+    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEdit request){
+        postService.edit(postId, request);
     }
 }
 

@@ -1,6 +1,7 @@
 package com.ttt.capstone.service;
 
 import com.ttt.capstone.domian.Post;
+import com.ttt.capstone.exception.PostNotFound;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.request.PostEdit;
@@ -62,9 +63,6 @@ class PostServiceTest {
                 .build();
         postRepository.save(requestPost);
 
-
-
-
         //when
         PostResponse response = postService.get(requestPost.getId());
 
@@ -74,6 +72,8 @@ class PostServiceTest {
         assertEquals("foo", response.getTitle());
         assertEquals("bar", response.getContent());
     }
+
+
 
     @Test
     @DisplayName("글 여러개 조회")
@@ -124,8 +124,8 @@ class PostServiceTest {
         //then
         Post changedPost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다. id=" + post.getId()));
-        Assertions.assertEquals("임준형", changedPost.getTitle());
-        Assertions.assertEquals("수정된 내용이지롱", changedPost.getContent());
+        assertEquals("임준형", changedPost.getTitle());
+        assertEquals("수정된 내용이지롱", changedPost.getContent());
     }
 
     @Test
@@ -150,7 +150,7 @@ class PostServiceTest {
         //then
         Post changedPost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException("글이 존재하지 않습니다. id=" + post.getId()));
-                Assertions.assertEquals("저것은 내용이지롱", changedPost.getContent());
+                assertEquals("저것은 내용이지롱", changedPost.getContent());
     }
 
     @Test
@@ -167,6 +167,64 @@ class PostServiceTest {
         //when
         postService.delete(post.getId());
 
-        Assertions.assertEquals(0, postRepository.count());
+        assertEquals(0, postRepository.count());
+    }
+
+    @Test
+    @DisplayName("게시글 삭제 - 존재하지 않는 글 오류발생해야함")
+    void test7(){
+        //give
+        Post post = Post.builder()
+                .title("임준형")
+                .content("이것은 내용이지롱")
+                .build();
+
+        postRepository.save(post);
+
+        //expected
+
+        assertThrows(PostNotFound.class, () -> {
+            postService.delete(post.getId() + 1L);
+        });
+    }
+
+    @Test
+    @DisplayName("글 1개 조회 - 존재하지 않는 글 오류발생해야함")
+    void test8(){
+        //given
+        Post post = Post.builder()
+                .title("임준형")
+                .content("초콜릿")
+                .build();
+        postRepository.save(post);
+
+        //expected
+        assertThrows(PostNotFound.class, () -> {
+            postService.get(post.getId() + 1L);
+        });
+        //then
+    }
+
+    @Test
+    @DisplayName("글 내용 수정 - 존재하지 않는 글 오류발생해야함")
+    void test9() {
+        //give
+        Post post = Post.builder()
+                .title("임준형")
+                .content("이것은 내용이지롱")
+                .build();
+
+        postRepository.save(post);
+
+        PostEdit postEdit = PostEdit.builder()
+                .title("임준형")
+                .content("저것은 내용이지롱")
+                .build();
+
+        //expected
+
+        assertThrows(PostNotFound.class, () -> {
+            postService.edit(post.getId() + 1, postEdit);
+        });
     }
 }

@@ -2,6 +2,7 @@ package com.ttt.capstone.service;
 
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.domian.PostEditor;
+import com.ttt.capstone.exception.PostNotFound;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.request.PostEdit;
@@ -56,7 +57,7 @@ public class PostService {
 
     public PostResponse get(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+                .orElseThrow(PostNotFound::new);
 
         return PostResponse.builder()
                 .id(post.getId())
@@ -84,7 +85,7 @@ public class PostService {
     @Transactional
     public void edit(Long id, PostEdit postEdit){
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다. "));
+                .orElseThrow(PostNotFound::new);
 
         PostEditor.PostEditorBuilder editorBuitor = post.toEditor();
         PostEditor postEditor = editorBuitor.title(postEdit.getTitle())
@@ -101,7 +102,7 @@ public class PostService {
 
     public void delete(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하ㅓ지 않는 글입니다."));
+                .orElseThrow(PostNotFound::new);
 
         // -> 존재하는 경우
         postRepository.delete(post);

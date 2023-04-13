@@ -324,7 +324,6 @@ class PostControllerTest {
     @DisplayName("게시글 작성시 제목에 '바보'는 포함될 수 없다.")
     void test12() throws Exception{
         //given
-        PostCreate requestPrev = new PostCreate("제목입니다.", "내용입니다.");
         PostCreate request = PostCreate.builder()
                 .title("나는 바보입니다.")
                 .content("내용입니다.")

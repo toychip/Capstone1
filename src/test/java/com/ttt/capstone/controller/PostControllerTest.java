@@ -316,6 +316,8 @@ class PostControllerTest {
                         .content(objectMapper.writeValueAsString(postEdit)))
                 .andExpect(status().isNotFound())
                 .andDo(print());
+
+
     }
 
     @Test
@@ -339,6 +341,13 @@ class PostControllerTest {
                 .andExpect(status().isBadRequest())
                 .andDo(print());
 
-
     }
 }
+
+// API 문서 생성
+// 클라이언트 입장 어떤 API 있는지 모름
+
+// Spring RestDocs
+// 장점: 운영코드에 영향이 없음.
+// - 코드 수정 -> 문서를 수정 x -> 코드(기능)이랑 문서랑 달라짐.
+// Test케이스 실행 -> 문서를 자동으로 생성해줌(restDocs)

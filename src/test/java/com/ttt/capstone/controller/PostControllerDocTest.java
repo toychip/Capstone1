@@ -19,6 +19,7 @@ import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.PayloadDocumentation;
 import org.springframework.restdocs.request.RequestDocumentation;
+import org.springframework.restdocs.snippet.Attributes;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -61,7 +62,7 @@ public class PostControllerDocTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andDo(document("index",
+                .andDo(document("post-inquiry",
                         pathParameters(parameterWithName("postId").description("게시글 ID")
                         ),
                         responseFields(fieldWithPath("id").description("게시글 ID"),
@@ -88,10 +89,11 @@ public class PostControllerDocTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andDo(document("index",
+                .andDo(document("post-create",
                         requestFields(
-                        fieldWithPath("title").description("제목"),
-                        fieldWithPath("content").description("내용")
+                        fieldWithPath("title").description("제목")
+                                .attributes(Attributes.key("constraint").value("올바른 제목을 입력해주세요.")),
+                        fieldWithPath("content").description("내용").optional()
                         )
                 ));
     }

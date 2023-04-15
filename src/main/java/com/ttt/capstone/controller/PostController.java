@@ -35,12 +35,12 @@ public class PostController {
 
      react -> react + SSR = next.js
  */
-
     private final PostService postService;
 
     @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
     public Post postNn(@RequestBody @Valid PostCreate request) {
+
 
         return postService.writeNn(request);
 //        return Map.of();
@@ -56,11 +56,11 @@ public class PostController {
 
     @PostMapping("/posts")
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
-    public void post(@RequestBody @Valid PostCreate request) {
-
-        request.validate();
-
-        postService.write(request);
+    public void post(@RequestBody @Valid PostCreate request, @RequestHeader String authorization) {
+        if(authorization.equals("toychip")) {
+            request.validate();
+            postService.write(request);
+        }
     }
 
 

@@ -53,25 +53,7 @@ class PostControllerTest {
     }
 
     @Test
-    @DisplayName("/posts 요청시 빈 오브젝트 반환.")
-    void test() throws Exception{
-        // 글 제목
-        // 글 내용
-
-        // expected
-        mockMvc.perform(post("/posts")
-                        .contentType(APPLICATION_JSON)
-                        .content("{\"title\": \"제목입니다.\",\"content\" :\"내용입니다.\"}")
-//                        .param("title", "글 제목")
-//                        .param("content", "글 내용입니다 하하")
-                )   // application/json
-                .andExpect(status().isOk())
-                .andExpect(content().string(""))
-                .andDo(print());
-    }
-
-    @Test
-    @DisplayName("/posts 요청시 title 값은 필수다.")
+    @DisplayName("글 작성 요청시 '/posts 요청시' title 값은 필수다.")
     void test2() throws Exception{
         // given
         PostCreate request = PostCreate.builder()
@@ -97,7 +79,7 @@ class PostControllerTest {
     }
 
     @Test
-    @DisplayName("게시글 작성, /posts 요청시 DB에 값이 저장된다.")
+    @DisplayName("글 작성 요청시 '/posts' 요청시 DB에 값이 저장된다.")
     void test3() throws Exception{
         //given
         PostCreate requestPrev = new PostCreate("제목입니다.", "내용입니다.");
@@ -112,6 +94,7 @@ class PostControllerTest {
         System.out.println(json);
         // when
         mockMvc.perform(post("/posts")
+                        .header("authorization","toychip")
                                 .contentType(APPLICATION_JSON)
 //                                .content("{\"title\": \"제목입니다.\", \"content\": \"내용입니다.\"}")
                                 .content(json)

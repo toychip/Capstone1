@@ -94,7 +94,6 @@ class PostControllerTest {
         System.out.println(json);
         // when
         mockMvc.perform(post("/posts")
-                        .header("authorization","toychip")
                                 .contentType(APPLICATION_JSON)
 //                                .content("{\"title\": \"제목입니다.\", \"content\": \"내용입니다.\"}")
                                 .content(json)

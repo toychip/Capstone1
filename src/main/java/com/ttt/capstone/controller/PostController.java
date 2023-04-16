@@ -1,6 +1,7 @@
 package com.ttt.capstone.controller;
 
 
+import com.ttt.capstone.config.data.UserSession;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.exception.InvalidRequest;
 import com.ttt.capstone.request.PostCreate;
@@ -35,7 +36,14 @@ public class PostController {
 
      react -> react + SSR = next.js
  */
+
     private final PostService postService;
+
+    @GetMapping("/foo")
+    public Long foo(UserSession userSession){
+        log.info(">>>{}", userSession.id);
+        return userSession.id;
+    }
 
     @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
@@ -56,11 +64,9 @@ public class PostController {
 
     @PostMapping("/posts")
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){
-    public void post(@RequestBody @Valid PostCreate request, @RequestHeader String authorization) {
-        if(authorization.equals("toychip")) {
+    public void post(@RequestBody @Valid PostCreate request) {
             request.validate();
             postService.write(request);
-        }
     }
 
 

@@ -93,7 +93,7 @@ public class PostControllerDocTest {
                         requestFields(
                         fieldWithPath("title").description("제목")
                                 .attributes(Attributes.key("constraint").value("올바른 제목을 입력해주세요.")),
-                        fieldWithPath("content").description("내용").optional()
+                        fieldWithPath("content").description("내용")
                         )
                 ));
     }

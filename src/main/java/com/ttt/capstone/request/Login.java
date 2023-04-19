@@ -1,16 +1,15 @@
 package com.ttt.capstone.request;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.hibernate.validator.constraints.Email;
+import lombok.*;
+//import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class Login {
 
     @NotBlank(message = "이메일을 입력해주세요")
@@ -20,4 +19,9 @@ public class Login {
     private String password;
 
 
+    @Builder
+    public Login(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

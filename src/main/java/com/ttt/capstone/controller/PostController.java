@@ -39,10 +39,15 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/foo")
+    @GetMapping("/test")
     public Long foo(UserSession userSession){
         log.info(">>>{}", userSession.id);
         return userSession.id;
+    }
+
+    @GetMapping("/")
+    public String home(){
+        return "index.html";
     }
 
     @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것
@@ -79,13 +84,6 @@ public class PostController {
 
     //조회 API
     // 여러개의 글 조회 API (1개의 글 Post을 가져오는 기능)
-    // /posts
-
-//    @GetMapping("/posts")
-//    public List<PostResponse> getList(@PageableDefault(size = 3) Pageable pageable) {
-//        return postService.getList(pageable);
-//    }
-
     @GetMapping("/posts")
     public List<PostResponse> getList(@ModelAttribute PostSearch postSearch) {
         return postService.getList(postSearch);

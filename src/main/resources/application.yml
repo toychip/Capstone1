@@ -21,6 +21,5 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
-
   sql:
-    init-model: always
+    init-mode: always

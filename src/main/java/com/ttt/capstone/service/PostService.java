@@ -23,19 +23,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostService {
-
-
     private final PostRepository postRepository;
-
-    public Post writeNn(PostCreate postCreate){
-        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
-        Post post = Post.builder()
-                .title(postCreate.getTitle())
-                .content(postCreate.getContent())
-                .build();
-
-        return postRepository.save(post);
-    }
     public void write(PostCreate postCreate){
         // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
         Post post = Post.builder()
@@ -44,28 +32,15 @@ public class PostService {
                 .build();
         postRepository.save(post);
     }
-
-    public Long writePk(PostCreate postCreate){
-        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
-        Post post = Post.builder()
-                .title(postCreate.getTitle())
-                .content(postCreate.getContent())
-                .build();
-
-        return post.getId();
-    }
-
     public PostResponse get(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(PostNotFound::new);
-
         return PostResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
                 .build();
     }
-
     // 여러개의 게시글 조회
 //    public List<PostResponse> getList(Pageable pageable) {
 ////        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
@@ -76,22 +51,17 @@ public class PostService {
 //    }
     public List<PostResponse> getList(PostSearch postSearch) {
 //        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
-
         return postRepository.getList(postSearch).stream()
                 .map(PostResponse::new)
-                .collect(Collectors.toList());
-    }
-
+                .collect(Collectors.toList());}
     @Transactional
     public void edit(Long id, PostEdit postEdit){
         Post post = postRepository.findById(id)
                 .orElseThrow(PostNotFound::new);
-
         PostEditor.PostEditorBuilder editorBuitor = post.toEditor();
         PostEditor postEditor = editorBuitor.title(postEdit.getTitle())
                 .content(postEdit.getContent())
                 .build();
-
         post.edit(postEditor);
 //            이러한 불편한 상황들 때문에 postEditor를 사용함
 //        post.edit(postEdit.getTitle() != null ? postEdit.getTitle() : post.getTitle(),
@@ -99,12 +69,24 @@ public class PostService {
 //        patch할때 body에 수정 정보를 내려 줄 것이면 아래와 같게
 //        return new PostResponse(post);
     }
-
     public void delete(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(PostNotFound::new);
-
         // -> 존재하는 경우
-        postRepository.delete(post);
+        postRepository.delete(post);}
+    public Post writeNn(PostCreate postCreate){
+        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .build();
+        return postRepository.save(post);}
+    public Long writePk(PostCreate postCreate){
+        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .build();
+        return post.getId();
     }
 }

@@ -45,9 +45,10 @@ public class PostController {
         return userSession.id;
     }
 
-    @GetMapping("/")
-    public String home(){
-        return "index.html";
+    @GetMapping("/session")
+    public Long haveSession(UserSession userSession){
+        log.info(">>>{}", userSession.id);
+        return userSession.id;
     }
 
     @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것

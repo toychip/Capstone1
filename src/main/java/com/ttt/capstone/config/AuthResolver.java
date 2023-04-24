@@ -4,6 +4,8 @@ import com.ttt.capstone.config.data.UserSession;
 import com.ttt.capstone.domian.Session;
 import com.ttt.capstone.exception.Unauthorized;
 import com.ttt.capstone.repository.SessionRepository;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -30,28 +32,27 @@ public class AuthResolver implements HandlerMethodArgumentResolver {
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
-        HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
-        if (servletRequest == null){
-            log.info("servletRequest null");
-            throw new Unauthorized();
-
-        }
-
-        Cookie[] cookies = servletRequest.getCookies();
-
-        if (cookies.length == 0){
-            log.info("키가 null");
+        String jws = webRequest.getHeader("Authorization");
+        if (jws == null || jws.equals("")){
+            log.info("jws null");
             throw new Unauthorized();
         }
 
-        String accessToken = cookies[0].getValue();
+        try {
 
-        // 값이 있다면
-        Session session = sessionRepository.findByAccessToken(accessToken)
-                .orElseThrow(Unauthorized::new);
+            Jwts.parserBuilder()
+                    .setSigningKey("C")
+                    .build()
+                    .parseClaimsJws(jws);
+
+            //OK, we can trust this JWT 복호화 성공
+
+        } catch (JwtException e) { // 복호화 실패
+            throw new Unauthorized();
+        }
 
         // db 사용자 확인 작업 추가 예정
-        return new UserSession(session.getMember().getId());
-
+//        return new UserSession(session.getMember().getId());
+        return null;
     }
 }

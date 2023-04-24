@@ -6,6 +6,7 @@ import com.ttt.capstone.domian.Session;
 import com.ttt.capstone.repository.SessionRepository;
 import com.ttt.capstone.repository.MemberRepository;
 import com.ttt.capstone.request.Login;
+import com.ttt.capstone.request.Signup;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -138,11 +139,6 @@ class AuthControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accessToken", Matchers.notNullValue()))
                 .andDo(print());
-
-//        Member loggedInUser = memberRepository.findById(member.getId())
-//                .orElseThrow(RuntimeException::new);
-//
-//        Assertions.assertEquals(1L, loggedInUser.getSessions().size());
     }
 
     @Test
@@ -182,6 +178,24 @@ class AuthControllerTest {
         // expected
         mockMvc.perform(get("/session")
                         .header("Authorization", session.getAccessToken())
+                        .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("회원가입")
+    void test6() throws Exception {
+        // given
+        Signup signup = Signup.builder()
+                .email("toytoy@naver.com")
+                .password("1234")
+                .name("임준형")
+                .build();
+
+        // expected
+        mockMvc.perform(post("/auth/signup")
+                        .content(objectMapper.writeValueAsString(signup))
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());

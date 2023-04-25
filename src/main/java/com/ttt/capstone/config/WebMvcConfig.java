@@ -1,6 +1,5 @@
 package com.ttt.capstone.config;
 
-import com.ttt.capstone.repository.SessionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -13,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private final SessionRepository sessionRepository;
+//    private final SessionRepository sessionRepository;
 
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
@@ -21,9 +20,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 ////                .addPathPatterns()
 //                .excludePathPatterns("/error", "/favicon.ico");
 //    }
-
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new AuthResolver(sessionRepository));
-    }
+//
+//    @Override
+//    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+//        resolvers.add(new AuthResolver(sessionRepository));
+//    }
 }

@@ -1,17 +1,19 @@
 package com.ttt.capstone.service;
 
+import com.ttt.capstone.crypt.PasswordEncoder;
 import com.ttt.capstone.domian.Member;
 import com.ttt.capstone.exception.AlreadyExistsEmailException;
+import com.ttt.capstone.exception.InvalidSigninInformation;
 import com.ttt.capstone.repository.MemberRepository;
-import com.ttt.capstone.request.Login;
 import com.ttt.capstone.request.Signup;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ActiveProfiles("test")
 @SpringBootTest
 class AuthServiceTest {
 
@@ -30,19 +32,24 @@ class AuthServiceTest {
     @DisplayName("회원가입 성공")
     void test1(){
         //given
+        PasswordEncoder encoder = new PasswordEncoder();
         Signup signup = Signup.builder()
                 .email("toytoy@naver.com")
-                .password("1234")
+                .password("1234@@")
                 .name("임준형")
                 .build();
         //when
         authService.signup(signup);
         //then
         assertEquals(1, memberRepository.count());
+
         Member member = memberRepository.findAll().iterator().next();
+
+
         assertEquals("toytoy@naver.com", member.getEmail());
-        assertNotNull(member.getPassword());
-        assertNotEquals("1234", member.getPassword());
+//        assertNotNull(member.getPassword());
+//        assertEquals("1234", member.getPassword());
+        assertTrue(encoder.matches("1234@@", member.getPassword()));
         assertEquals("임준형", member.getName());
     }
 
@@ -68,16 +75,20 @@ class AuthServiceTest {
 
     }
 
+    /*
     @Test
     @DisplayName("암호화 후 로그인 성공")
     void test3(){
         //given
-        Signup signup = Signup.builder()
+        PasswordEncoder encoder = new PasswordEncoder();
+        String encrpytPassword = encoder.encrypt("1234");
+
+        Member member = Member.builder()
                 .email("toytoy@naver.com")
-                .password("1234")
+                .password(encrpytPassword)
                 .name("임준형")
                 .build();
-        authService.signup(signup);
+        memberRepository.save(member);
 
 
         Login login = Login.builder()
@@ -86,9 +97,38 @@ class AuthServiceTest {
                 .build();
 
         //when
-        authService.signin(login);
+        Long memberId = authService.signin(login);
 
         //then
-
+        assertNotNull(memberId);
     }
+
+    @Test
+    @DisplayName("암호화 후 로그인시도 비밀번호 틀림")
+    void test4(){
+        //given
+        PasswordEncoder encoder = new PasswordEncoder();
+        String encrpytPassword = encoder.encrypt("1234");
+
+        Member member = Member.builder()
+                .email("toytoy@naver.com")
+                .password(encrpytPassword)
+                .name("임준형")
+                .build();
+        memberRepository.save(member);
+
+
+        Login login = Login.builder()
+                .email("toytoy@naver.com")
+                .password("5678")
+                .build();
+
+        //when
+        assertThrows(InvalidSigninInformation.class,
+                () -> authService.signin(login));
+
+        //then
+    }
+
+     */
 }

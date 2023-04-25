@@ -1,4 +1,8 @@
+// Spring Security 적용할것이므로 주석처리
+
+/*
 package com.ttt.capstone.repository;
+
 
 import com.ttt.capstone.domian.Session;
 import org.springframework.data.repository.CrudRepository;
@@ -9,3 +13,4 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
 
     Optional<Session> findByAccessToken(String accessToken);
 }
+*/

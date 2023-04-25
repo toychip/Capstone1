@@ -1,3 +1,7 @@
+// Spring Security 적용할것이므로 주석처리
+
+/*
+
 package com.ttt.capstone.domian;
 
 import lombok.AccessLevel;
@@ -27,6 +31,5 @@ public class Session {
         this.accessToken = UUID.randomUUID().toString();
         this.member = member;
     }
-
-
 }
+*/

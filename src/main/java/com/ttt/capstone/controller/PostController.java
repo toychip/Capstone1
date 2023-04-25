@@ -1,7 +1,6 @@
 package com.ttt.capstone.controller;
 
 
-import com.ttt.capstone.config.data.UserSession;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.exception.InvalidRequest;
 import com.ttt.capstone.request.PostCreate;
@@ -38,18 +37,6 @@ public class PostController {
  */
 
     private final PostService postService;
-
-    @GetMapping("/test")
-    public Long foo(UserSession userSession){
-        log.info(">>>{}", userSession.id);
-        return userSession.id;
-    }
-
-    @GetMapping("/session")
-    public Long haveSession(UserSession userSession){
-        log.info(">>>{}", userSession.id);
-        return userSession.id;
-    }
 
     @PostMapping("/postsNn")    // 처음에 작성한, 글을 가져오는 것
 //    public Map<String, String> post(@RequestBody @Valid PostCreate request){

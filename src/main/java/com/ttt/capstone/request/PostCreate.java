@@ -3,7 +3,7 @@ package com.ttt.capstone.request;
 import com.ttt.capstone.exception.InvalidRequest;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 @ToString
 @Setter

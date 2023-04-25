@@ -55,4 +55,5 @@ public class AuthResolver implements HandlerMethodArgumentResolver {
 //        return new UserSession(session.getMember().getId());
         return null;
     }
+
 }

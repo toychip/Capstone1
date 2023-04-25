@@ -9,6 +9,7 @@ import com.ttt.capstone.repository.MemberRepository;
 import com.ttt.capstone.request.Login;
 import com.ttt.capstone.request.Signup;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +22,26 @@ public class AuthService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public String signin(Login login){
-        Member member = memberRepository.findByEmailAndPassword(login.getEmail(), login.getPassword())
+    public Long signin(Login login){
+//        Member member = memberRepository.findByEmailAndPassword(login.getEmail(), login.getPassword())
+//                .orElseThrow(InvalidSigninInformation::new);
+//        Session session = member.addSession();  // jwt를 쓰면서 필요가 없어짐
+//        return session.getAccessToken();
+        Member member = memberRepository.findByEmail(login.getEmail())
                 .orElseThrow(InvalidSigninInformation::new);
-        Session session = member.addSession();  // jwt를 쓰면서 필요가 없어짐
 
-        return session.getAccessToken();
+        SCryptPasswordEncoder encoder = new SCryptPasswordEncoder(
+                16,
+                8,
+                1,
+                32,
+                64);
+        var matches = encoder.matches(login.getPassword(), member.getPassword());
+        if (!matches){
+            throw new InvalidSigninInformation();
+        }
+
+        return member.getId();
     }
 
     public void signup(Signup signup) {
@@ -35,10 +50,20 @@ public class AuthService {
             throw new AlreadyExistsEmailException();
         }
 
+        SCryptPasswordEncoder encoder = new SCryptPasswordEncoder(
+                16,
+                8,
+                1,
+                32,
+                64);
+
+        String encryptedPassword = encoder.encode(signup.getPassword());
+
+
 
         var member = Member.builder()
                 .name(signup.getName())
-                .password(signup.getPassword())
+                .password(encryptedPassword)
                 .email(signup.getEmail())
                 .build();
         memberRepository.save(member);

@@ -23,7 +23,7 @@ class AuthServiceTest {
     @Autowired
     private AuthService authService;
 
-    @AfterEach
+    @BeforeEach
     void clean(){
         memberRepository.deleteAll();
     }
@@ -34,7 +34,7 @@ class AuthServiceTest {
         //given
         PasswordEncoder encoder = new PasswordEncoder();
         Signup signup = Signup.builder()
-                .email("toytoy@naver.com")
+                .email("manager@naver.com")
                 .password("1234@@")
                 .name("임준형")
                 .build();
@@ -46,10 +46,11 @@ class AuthServiceTest {
         Member member = memberRepository.findAll().iterator().next();
 
 
-        assertEquals("toytoy@naver.com", member.getEmail());
+        assertEquals("manager@naver.com", member.getEmail());
 //        assertNotNull(member.getPassword());
 //        assertEquals("1234", member.getPassword());
         assertTrue(encoder.matches("1234@@", member.getPassword()));
+        System.out.println(member.getPassword());
         assertEquals("임준형", member.getName());
     }
 

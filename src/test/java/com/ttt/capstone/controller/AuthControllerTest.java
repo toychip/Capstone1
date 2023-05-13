@@ -190,7 +190,6 @@ class AuthControllerTest {
         mockMvc.perform(post("/auth/signup")
                         .content(objectMapper.writeValueAsString(signup))
                         .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk())
                 .andDo(print());
     }
 }

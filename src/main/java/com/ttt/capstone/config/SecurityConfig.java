@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,13 +27,14 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Configuration
-@EnableWebSecurity(debug = true)    // Todo 배포 전에 False로 바꾸기
+//@EnableWebSecurity(debug = true)    // Todo 배포 전에 False로 바꾸기
 public class SecurityConfig {
 
     @Bean   //
     public WebSecurityCustomizer webSecurityCustomizer(){
         return web -> web.ignoring()
-                .requestMatchers("/error", "/favicon.ico"); // "/css/**" ,
+                .requestMatchers("/error", "/favicon.ico") // "/css/**" ,
+                .requestMatchers("/docs/index.html");
     }
 
     @Bean
@@ -41,7 +43,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                     .requestMatchers(HttpMethod.POST,"/auth/signup").permitAll() // 누구나 접근 가능
                     .requestMatchers(HttpMethod.POST,"/auth/login").permitAll() // 누구나 접근 가능
-                    .anyRequest().authenticated()       // 다른 링크들은 권한을 필요로
+                    .requestMatchers(HttpMethod.GET,"/auth/login").permitAll() // 누구나 접근 가능
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/auth/login")
@@ -50,10 +53,18 @@ public class SecurityConfig {
                     .passwordParameter("password")
                     .defaultSuccessUrl("/")
                 .and()
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.sendRedirect("/auth/login"); // 인증되지 않은 사용자에게 접근이 거부될 때 로그인 페이지로 리다이렉션
+                })
+                .and()
                 .rememberMe(rm -> rm.rememberMeParameter("remember")
                         .alwaysRemember(false)
                         .tokenValiditySeconds(2592000)
                 )
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션 생성 정책을 "STATELESS"로 설정하여 세션을 사용하지 않도록 합니다.
+                .and()
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }

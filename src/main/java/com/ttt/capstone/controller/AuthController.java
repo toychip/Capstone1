@@ -17,33 +17,9 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/auth/login")
-    public String login(){
-        return "로그인 페이지 입니다.";
-    }
 
     @PostMapping("/auth/signup")
     public void signup(@RequestBody Signup signup){
         authService.signup(signup);
     }
 }
-    /* Token 방식
-    @PostMapping("/auth/login")
-    public ResponseEntity<Object> login(@RequestBody Login login){
-        String accessToken = authService.signin(login);
-//        return new SessionResponse(accessToken);
-        ResponseCookie cookie = ResponseCookie.from("SESSION", accessToken)
-                .domain("localhost")    // todo 서버 환경에 따른 분리 필요
-                .path("/")
-                .httpOnly(true)
-                .secure(false)
-                .maxAge(Duration.ofDays(30))   // 한 달
-                .sameSite("Strict")
-                .build();
-        log.info(">>>>>>>>>>>>> cookie={}", cookie.toString());
-        return ResponseEntity.ok()
-                .header(HttpHeaders.SET_COOKIE, cookie.toString())
-                .build();
-    }
-
-     */

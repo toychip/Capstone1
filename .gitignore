@@ -38,3 +38,7 @@ out/
 
 # nodenv
 nodeenv-16
+
+# .gitignore
+generated/
+

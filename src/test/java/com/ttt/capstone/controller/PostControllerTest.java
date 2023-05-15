@@ -3,8 +3,11 @@ package com.ttt.capstone.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.repository.PostRepository;
+import com.ttt.capstone.repository.RegionRepository;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.request.PostEdit;
+import com.ttt.capstone.service.RegionService;
+import com.ttt.capstone.service.SmallNameResponse;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -325,6 +328,8 @@ class PostControllerTest {
                 .andDo(print());
 
     }
+
+
 }
 
 // API 문서 생성

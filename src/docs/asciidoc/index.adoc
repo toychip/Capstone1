@@ -6,6 +6,27 @@
 :toclevels: 2
 :sectlinks:
 
+= 회원
+
+== 회원 가입
+=== 요청
+include::{snippets}/member-join/http-request.adoc[]
+include::{snippets}/member-join/path-parameters.adoc[]
+
+=== 응답
+include::{snippets}/member-join/http-response.adoc[]
+
+== 로그인
+=== 요청
+include::{snippets}/member-login/http-request.adoc[]
+// === 요청 파라미터
+include::{snippets}/member-login/path-parameters.adoc[]
+// include::{snippets}/post-inquiry/request-fields.adoc[]
+=== 응답
+include::{snippets}/member-login/http-response.adoc[]
+
+
+
 == 글 단건 조회
 
 === 요청

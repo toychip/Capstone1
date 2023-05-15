@@ -3,6 +3,7 @@ package com.ttt.capstone.service;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.exception.PostNotFound;
 import com.ttt.capstone.repository.PostRepository;
+import com.ttt.capstone.repository.RegionRepository;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.request.PostEdit;
 import com.ttt.capstone.request.PostSearch;
@@ -227,4 +228,21 @@ class PostServiceTest {
             postService.edit(post.getId() + 1, postEdit);
         });
     }
+
+    @Autowired
+    private RegionRepository regionRepository;
+    @Autowired
+    private RegionService regionService;
+
+    @Test
+    @DisplayName("알맞게 조회해오는지?")
+    void test10() {
+        String request = "편의점";
+        List<SmallNameResponse> seoul = regionService.getSeoul(request);
+//        for (SmallNameResponse smallNameResponse : seoul) {
+//            System.out.println("smallNameResponse = " + smallNameResponse);
+//        }
+    }
+
+
 }

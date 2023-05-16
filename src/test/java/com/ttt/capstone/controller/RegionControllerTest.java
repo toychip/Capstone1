@@ -169,10 +169,10 @@ public class RegionControllerTest {
 
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 전라북도")
-    void testFomdBySmallCode_jellabukdo() throws Exception {
+    void testFomdBySmallCode_jeollabukdo() throws Exception {
         String smallCode = "D01A03";
 
-        mockMvc.perform(get("/region/jellabukdo/{smallCode}", smallCode)
+        mockMvc.perform(get("/region/jeollabukdo/{smallCode}", smallCode)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").isNotEmpty())
@@ -181,10 +181,10 @@ public class RegionControllerTest {
 
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 전라남도")
-    void testFomdBySmallCode_jellanamdo() throws Exception {
+    void testFomdBySmallCode_jeollanamdo() throws Exception {
         String smallCode = "D01A03";
 
-        mockMvc.perform(get("/region/jellanamdo/{smallCode}", smallCode)
+        mockMvc.perform(get("/region/jeollanamdo/{smallCode}", smallCode)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").isNotEmpty())

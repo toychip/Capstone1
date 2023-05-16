@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="chungnam_main.css">
+    <title>충청남도 메인</title>
+
+<body>
+    <header>
+        <h1><a href="../../main.html">Taste The Trip</a></h1>
+        <nav>
+            <ul>
+                <li><a href="../../rank.html">랭킹</a></li>
+                <li><a href="../../board.html">자유게시판</a></li>
+                <li><a href="../../pr.html">홍보</a></li>
+                <li><a href="../../review.html">리뷰</a></li>
+                <li><a href="../../join.html">회원가입</a></li>
+                <li><a href="../../login.html">로그인</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <input type="text" placeholder="충청남도">
+        <button type="submit">검색</button>
+    </div>
+
+    <div class="container">
+        <div class="category-menu">
+          <ul class="category-list">
+            <li class="large-category-item">
+                <a href="#" class="large-category-link">관광/여가/오락</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">PC/오락/당구/볼링등</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">기원</a></li>
+                      <li class="sub-sub-category-item"><a href="#">당구장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">볼링장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">비디오감상실</a></li>
+                      <li class="sub-sub-category-item"><a href="#">오락용사격장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인터넷PC방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">전자오락실</a></li>
+                      <li class="sub-sub-category-item"><a href="#">탁구장</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">경마/경륜/성인오락</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">게임룸</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">놀이/여가/취미</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">기타오락관련산업</a></li>
+                      <li class="sub-sub-category-item"><a href="#">낚시터</a></li>
+                      <li class="sub-sub-category-item"><a href="#">주말농장</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">무도/유흥/가무</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">극장식유흥주점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">나이트클럽</a></li>
+                      <li class="sub-sub-category-item"><a href="#">노래방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">무도유흥주점-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">무도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">한국식유흥주점</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">스포츠/운동</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">롤러스케이트장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">서바이벌게임장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내낚시</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내스케이트장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내야구연습장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실외야구연습장</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">연극/영화/극장</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">연극/음악/예술관련기타</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">요가/단전/마사지</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">단식원</a></li>
+                      <li class="sub-sub-category-item"><a href="#">단전호흡</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스포츠마사지</a></li>
+                      <li class="sub-sub-category-item"><a href="#">안마시술소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">요가/단식</a></li>
+                      <li class="sub-sub-category-item"><a href="#">지압원</a></li>
+                      <li class="sub-sub-category-item"><a href="#">체형미교실</a></li>
+                      <li class="sub-sub-category-item"><a href="#">활기원</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">부동산</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">부동산관련서비스</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">부동산신탁</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">부동산중개</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">부동산중개</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">분양</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">건물분양-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">상가분양</a></li>
+                      <li class="sub-sub-category-item"><a href="#">주택공급</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">평가/개발/관리</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">부동산감정평가</a></li>
+                      <li class="sub-sub-category-item"><a href="#">부동산자문</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">생활서비스</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">개인/가정용품수리</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가구수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가방구두수전</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가전제품수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가죽/모피수선</a></li>
+                      <li class="sub-sub-category-item"><a href="#">개인/가정용품수리-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">농기구수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">악기수선</a></li>
+                      <li class="sub-sub-category-item"><a href="#">액세서리수선</a></li>
+                      <li class="sub-sub-category-item"><a href="#">에어컨수리/설치</a></li>
+                      <li class="sub-sub-category-item"><a href="#">열쇠제작</a></li>
+                      <li class="sub-sub-category-item"><a href="#">옷수선</a></li>
+                      <li class="sub-sub-category-item"><a href="#">정보통신기기수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">피아노조율</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">개인서비스</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">대서소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">번역/통역서비스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">탐정/경호</a></li>
+                      <li class="sub-sub-category-item"><a href="#">호스피스</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">광고/인쇄</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">간판제작종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">광고대행-전화번호부</a></li>
+                      <li class="sub-sub-category-item"><a href="#">광고물제작</a></li>
+                      <li class="sub-sub-category-item"><a href="#">광고물제작-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생활정보제공서비스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인쇄종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">지역정보지</a></li>
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터입력대행</a></li>
+                      <li class="sub-sub-category-item"><a href="#">편집대행</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">기타서비스업</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">공연티켓예매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">물품감정서비스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">보석감정</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사업경영상담</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사업중개업</a></li>
+                      <li class="sub-sub-category-item"><a href="#">상품권판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">상품전시</a></li>
+                      <li class="sub-sub-category-item"><a href="#">상품포장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">작곡</a></li>
+                      <li class="sub-sub-category-item"><a href="#">지도제작</a></li>
+                      <li class="sub-sub-category-item"><a href="#">지물재단</a></li>
+                      <li class="sub-sub-category-item"><a href="#">패션디자인</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">대중목욕탕/휴게</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">목욕업-찜질방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사우나/증기탕/온천</a></li>
+                      <li class="sub-sub-category-item"><a href="#">욕탕업-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">휴게텔</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">대행업</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">고객관리대행</a></li>
+                      <li class="sub-sub-category-item"><a href="#">꽃꽂이(대행)</a></li>
+                      <li class="sub-sub-category-item"><a href="#">복사대행</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사무대리서비스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">신용조사/흥신소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">심부름센터</a></li>
+                      <li class="sub-sub-category-item"><a href="#">이민유학알선</a></li>
+                      <li class="sub-sub-category-item"><a href="#">전단지배포대행</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">물품기기대여</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가정용가구/기기임대</a></li>
+                      <li class="sub-sub-category-item"><a href="#">도서/만화대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">도자기대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">렌트카</a></li>
+                      <li class="sub-sub-category-item"><a href="#">물수건대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">물품대여종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">비디오/오디오테이프대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">비디오카메라대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사무기기대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생활용품대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">악기대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">연극공연/영화제작용품임대</a></li>
+                      <li class="sub-sub-category-item"><a href="#">오락/스포츠용품대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">의류/한복대여</a></li>
+                      <li class="sub-sub-category-item"><a href="#">화환/화분대여</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">법무세무회계</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">법무관련서비스-종합</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">사진</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">사진관</a></li>
+                      <li class="sub-sub-category-item"><a href="#">상업사진</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스티커사진방</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">세탁/가사서비스</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">냉온수기소독/수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">방앗간/정미소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">세탁대행</a></li>
+                      <li class="sub-sub-category-item"><a href="#">세탁소/빨래방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">소파침대카펫트세탁</a></li>
+                      <li class="sub-sub-category-item"><a href="#">솜틀집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">신발세탁</a></li>
+                      <li class="sub-sub-category-item"><a href="#">청소/소독</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">예식/의례/관혼상제</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">결혼상담소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">예식장/예식서비스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">제사음식</a></li>
+                      <li class="sub-sub-category-item"><a href="#">폐백전문</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">운송/배달/택배</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">문서송달대행</a></li>
+                      <li class="sub-sub-category-item"><a href="#">우체국/우편물취급소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">이삿짐보관</a></li>
+                      <li class="sub-sub-category-item"><a href="#">종합이삿짐대행</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">이/미용/건강</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">남성미용실</a></li>
+                      <li class="sub-sub-category-item"><a href="#">발/네일케어</a></li>
+                      <li class="sub-sub-category-item"><a href="#">비만/피부관리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">여성미용실</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">인력/고용/용역알선</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가사도우미알선</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인력공급/고용알선</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">자동차/이륜차</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">광택전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">세차장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">오토바이판매/수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자동차정비/카센타</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자전거판매/수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">주차장운영</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">장례/묘지</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">묘지관리-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">장의사/관련서비스-종합</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">주유소/충전소</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">주유소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">차량가스충전소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">차량연료소매-종합</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">주택수리</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가스설비</a></li>
+                      <li class="sub-sub-category-item"><a href="#">미장타일도배도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">배관난방보일러</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수도설비</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유리창호</a></li>
+                      <li class="sub-sub-category-item"><a href="#">조립칸막이/파티션</a></li>
+                      <li class="sub-sub-category-item"><a href="#">주택수리종합</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">행사/이벤트</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">연예인대리업</a></li>
+                      <li class="sub-sub-category-item"><a href="#">이벤트기획</a></li>
+                      <li class="sub-sub-category-item"><a href="#">출장파티/연회대행</a></li>
+                      <li class="sub-sub-category-item"><a href="#">행사대행</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">소매</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">가구소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가구판매-돌침대</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가구판매-등가구</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가구판매-사무용가구</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가구판매-수입가구</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가구판매-응접세트</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가구판매-장농</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가구판매-침대전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">일반가구소매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">가방/신발/액세서리</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가발판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가방/가죽제품소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">구두제화/캐주얼화</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기능성신발판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">신발소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">액세서리판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">양품점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">우산/우의판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">재봉용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">휴대폰튜닝</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">가전제품소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">노래방기기판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">오디오전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">일반가전제품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">전화기판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">가정/주방/인테리어</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가스레인지판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">그릇판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">리본공예판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">비데판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">비즈공예</a></li>
+                      <li class="sub-sub-category-item"><a href="#">십자수/뜨개</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유리/페인트/철물건축자재</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인테리어/욕실용품/커튼</a></li>
+                      <li class="sub-sub-category-item"><a href="#">정수기연수기</a></li>
+                      <li class="sub-sub-category-item"><a href="#">조명기구/전기용품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">주방가구판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">주방용품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">지물판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">침구/수예품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">카페트판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">퀼트전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">풍선도소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">홈패션</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">건강/미용식품</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">건강식품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">건강원</a></li>
+                      <li class="sub-sub-category-item"><a href="#">금연관련제품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">녹즙판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">다이어트상품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생식판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">선식판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인삼제품판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">기타판매업</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">LPG판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">가정용연료소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">광촉매판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">노점/유사이동판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">농기구판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">농자재판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">동물약품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">미싱판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">복권판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사료소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">성인용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">신용카드조회기판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">안전보호구판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">업소용가전제품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">연탄판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유류판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">음반/테이프/CD</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자동판매기운영</a></li>
+                      <li class="sub-sub-category-item"><a href="#">제기용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">통신판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">사무/문구/컴퓨터</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">사무/문구용품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사무용기기소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인장/도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">잉크충전</a></li>
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터/사무용기기종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터/주변기기</a></li>
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터전문매장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터프로그램판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">화방/필방</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">사진/광학/정밀기기소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">금고판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">무전기(판매/수리)</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사진/광학/정밀기기소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">안경원</a></li>
+                      <li class="sub-sub-category-item"><a href="#">저울판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">카메라판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">필름판매점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">핸드폰소매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">선물/팬시/기념품</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">공예품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">관광/민예품/선물용품소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기념패/휘장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">꽃집/꽃배달</a></li>
+                      <li class="sub-sub-category-item"><a href="#">선물용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">토산품/기념품점</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">시계/귀금속소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">금은방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">시계/귀금속</a></li>
+                      <li class="sub-sub-category-item"><a href="#">시계방</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">애견/애완/동물</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">애견/애완/동물사육판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">애완동물 미용실</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">예술품/골동품/수석/분재</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">골동품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">분재판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수석판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">예술품/골동품소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">표구점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">화랑</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">운동/경기용품소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">건강/헬스용품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">골프용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">낚시용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">등산용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">볼링용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수상운동용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수영용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스키장비판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">운동/경기용품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자전거판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">총포상</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">유아용품</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">유아/임부복</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유아용품/장난감대여판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유아용품판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">음/식료품소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">건과류판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">건어물상</a></li>
+                      <li class="sub-sub-category-item"><a href="#">곡물소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">김치판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">냉동식품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">닭집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">두유판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">머리고기전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">미곡상</a></li>
+                      <li class="sub-sub-category-item"><a href="#">반찬가게</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생수판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수산물소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">식료품점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">식용유판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">식자재판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">어물상</a></li>
+                      <li class="sub-sub-category-item"><a href="#">얼음가게</a></li>
+                      <li class="sub-sub-category-item"><a href="#">우유판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유과판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유기농식품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">육류소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">정육점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">제과재료판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">청과물소매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">의복의류</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">가죽/모피의류</a></li>
+                      <li class="sub-sub-category-item"><a href="#">교복판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">남성의류전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">맞춤양복/양복점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">맞춤양장/양장점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">법복(승복)판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">섬유/직물/주단</a></li>
+                      <li class="sub-sub-category-item"><a href="#">셔츠/내의/속옷</a></li>
+                      <li class="sub-sub-category-item"><a href="#">아동복판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">여성내의전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">여성의류전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">예복/웨딩드레스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유니폼/맞춤복/단체복</a></li>
+                      <li class="sub-sub-category-item"><a href="#">일반의류</a></li>
+                      <li class="sub-sub-category-item"><a href="#">청바지판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">캐쥬얼/스포츠의류</a></li>
+                      <li class="sub-sub-category-item"><a href="#">특수복판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">한복/갈옷/민속옷</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">의약/의료품소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">건강보조기구판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">보청기판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">의료용품소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">의약품소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">의족/의수판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">자동차/자동차용품</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">네비게이션판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수입자동차판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자동차부품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자동차유리전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자동차장식품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">자동차판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">중고자동차판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">중고타이어판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">카오디오전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">타이어판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">종교용품판매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">종교용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">종교용품판매-불교</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">종합소매점</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">구판장/직판장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">백화점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생활용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수입품판매점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수퍼마켓</a></li>
+                      <li class="sub-sub-category-item"><a href="#">시장/종합상가</a></li>
+                      <li class="sub-sub-category-item"><a href="#">아케이드/쇼핑센타</a></li>
+                      <li class="sub-sub-category-item"><a href="#">어판장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">잡화점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">조합/연금매장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">종합소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">편의점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">할인점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">혼수전문점</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">중고품소매/교환</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">물물교환센타</a></li>
+                      <li class="sub-sub-category-item"><a href="#">재활용/고물수집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">중고가전가구</a></li>
+                      <li class="sub-sub-category-item"><a href="#">중고명품판매교환</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">책/서적/도서</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">기독교서적판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">불교서적판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">서적/신문소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">서점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">외국서적판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">잡지/신문소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">종교서적판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">중고서적판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">지도판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">할인/아동도서</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">철물/난방/건설자재소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">건축백화점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">목제품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">보일러/냉난방용품</a></li>
+                      <li class="sub-sub-category-item"><a href="#">셔터/새시판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">심야전기보일러판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">열쇠판매/수리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">조립식앵글판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">철물/건설자재소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">태양열온수기판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">취미/오락관련소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">그림/액자판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수족관</a></li>
+                      <li class="sub-sub-category-item"><a href="#">악기판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">액자점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">오락게임기구/장난감소매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">완구점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">이벤트용품판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">전자오락기구판매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">페인트/유리제품소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">도료염료</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유리/거울판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">페인트/유리제품소매</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">화장품소매</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">향수전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">화장품판매점</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">숙박</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">모텔/여관/여인숙</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">모텔/여관/여인숙</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">민박/하숙</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">민박/하숙</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">유스호스텔</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">유스호스텔</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">캠프/별장/펜션</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">캠프/별장/펜션</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">호텔/콘도</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">호텔/콘도</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">스포츠</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">실내운동시설</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">기타실내운동시설</a></li>
+                      <li class="sub-sub-category-item"><a href="#">복싱도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스쿼시장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스포츠센터</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내골프연습장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내수영장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내테니스장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">이종격투기</a></li>
+                      <li class="sub-sub-category-item"><a href="#">체육관</a></li>
+                      <li class="sub-sub-category-item"><a href="#">쿵후도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">킥복싱</a></li>
+                      <li class="sub-sub-category-item"><a href="#">택견도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">헬스클럽</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">실외운동시설</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">게이트볼장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">골프장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기타실외운동시설</a></li>
+                      <li class="sub-sub-category-item"><a href="#">눈썰매장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수상스키</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수영장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스키장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">승마장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실외골프연습장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실외궁도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">야구장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">인공암벽</a></li>
+                      <li class="sub-sub-category-item"><a href="#">축구장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">테니스장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">풋살경기장</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">운영관리시설</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">기타경기후원업/경기단체</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기타운영설비</a></li>
+                      <li class="sub-sub-category-item"><a href="#">운동경기협회</a></li>
+                      <li class="sub-sub-category-item"><a href="#">프로골프</a></li>
+                      <li class="sub-sub-category-item"><a href="#">프로스포츠경기운영</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">음식</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">기타음식업</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">고속도로휴게소</a></li>
+                      <li class="sub-sub-category-item"><a href="#">구내식당/자급식음식점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">국도휴게소</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">닭/오리요리</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">닭갈비전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">닭내장/닭발요리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">닭도리탕전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">불닭전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">삼계탕전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">오리고기전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">옻닭전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">찜닭전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">토종닭전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">후라이드/양념치킨</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">별식/퓨전요리</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">돌구이요리전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">동남아음식전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사철탕전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">샤브샤브전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">순대전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">죽전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">징기스칸요리전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">철판구이요리전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">퓨전음식전문</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">부페</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">고기부페</a></li>
+                      <li class="sub-sub-category-item"><a href="#">종합부페</a></li>
+                      <li class="sub-sub-category-item"><a href="#">한식부페</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">분식</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">국수/만두/칼국수</a></li>
+                      <li class="sub-sub-category-item"><a href="#">떡볶이전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">라면김밥분식</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스낵</a></li>
+                      <li class="sub-sub-category-item"><a href="#">우동전문점</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">양식</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">기타전문서양음식점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">돈가스전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">바베큐전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스테이크전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">스파게티전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">정통양식/경양식</a></li>
+                      <li class="sub-sub-category-item"><a href="#">카레전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">패밀리레스토랑</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">유흥주점</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">관광/유흥주점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기타일반유흥주점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">꼬치구이전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">로바다야끼</a></li>
+                      <li class="sub-sub-category-item"><a href="#">룸살롱/단란주점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">민속주점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">빠/카페/스탠드빠</a></li>
+                      <li class="sub-sub-category-item"><a href="#">소주방/포장마차</a></li>
+                      <li class="sub-sub-category-item"><a href="#">호프/맥주</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">음식배달서비스</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">국/찌개배달</a></li>
+                      <li class="sub-sub-category-item"><a href="#">야식집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">음식출장조달</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">일식/수산물</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">갈치/생선구이</a></li>
+                      <li class="sub-sub-category-item"><a href="#">게장전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">고등어전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">곰장어전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">굴요리전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">낙지/오징어</a></li>
+                      <li class="sub-sub-category-item"><a href="#">매운탕전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">민물장어전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">바닷가재/게요리전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">복전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">붕어찜전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">수산물전문음식점-종합</a></li>
+                      <li class="sub-sub-category-item"><a href="#">아구전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">음식점-일식</a></li>
+                      <li class="sub-sub-category-item"><a href="#">음식점-초밥전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">조개구이전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">참치전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">해물찜/탕전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">홍어전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">횟집</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">제과제빵떡케익</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">떡/한과집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">떡전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">제과점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">찐빵전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">케익전문점</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">중식</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">중국음식/중국집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">탕수육전문점</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">커피점/카페</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">보드게임카페</a></li>
+                      <li class="sub-sub-category-item"><a href="#">사주카페</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생과일주스전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">애견카페</a></li>
+                      <li class="sub-sub-category-item"><a href="#">전통찻집/인삼찻집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">커피전문점/카페/다방</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">패스트푸드</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">도너츠전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">도시락전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">샌드위치전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">생과자점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">아이스크림판매</a></li>
+                      <li class="sub-sub-category-item"><a href="#">토스트전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">패스트푸드</a></li>
+                      <li class="sub-sub-category-item"><a href="#">피자전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">핫도그</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">한식</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">갈비/삼겹살</a></li>
+                      <li class="sub-sub-category-item"><a href="#">곱창/양구이전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기사식당</a></li>
+                      <li class="sub-sub-category-item"><a href="#">기타고기요리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">냉면집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">돌솥/비빕밥전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">두부요리전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">버섯전문점</a></li>
+                      <li class="sub-sub-category-item"><a href="#">보리밥전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">부대찌개/섞어찌개</a></li>
+                      <li class="sub-sub-category-item"><a href="#">설렁탕집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">순두부전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">쌈밥전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">족발/보쌈전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">추어탕전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">파전전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">한식/백반/한정식</a></li>
+                      <li class="sub-sub-category-item"><a href="#">한정식전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">해장국/감자탕</a></li>
+                      <li class="sub-sub-category-item"><a href="#">황태전문</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="large-category-item">
+                <a href="#" class="large-category-link">학문/교육</a>
+                <ul class="medium-category-list">
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">도서관/독서실</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">고시원</a></li>
+                      <li class="sub-sub-category-item"><a href="#">독서실</a></li>
+                      <li class="sub-sub-category-item"><a href="#">이동도서관운영</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">유아교육</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">놀이방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">블럭놀이방</a></li>
+                      <li class="sub-sub-category-item"><a href="#">실내놀이터-유아</a></li>
+                      <li class="sub-sub-category-item"><a href="#">어린이집</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유아교육기관기타</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학문교육기타</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">운동/코치학교</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학습지보급</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-보습교습입시</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">학원-검정고시</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-입시</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-어학</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">학원-어린이영어</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-외국어/어학</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-예능취미체육</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">검도도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">레크레이션지도/상담</a></li>
+                      <li class="sub-sub-category-item"><a href="#">유도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">태권도장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-가요</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-꽃꽃이</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-레크리에이션</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-마술</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-바둑</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-배우/탤런트</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-사교춤</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-서당</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-스포츠/재즈댄스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-에어로빅</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-요리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-웅변</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-자수/동양자수</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-주산암산부기속셈</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-펜글씨/한문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">합기도장</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-음악미술무용</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">서예/서화/미술</a></li>
+                      <li class="sub-sub-category-item"><a href="#">피아노/바이올린/기타</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-국악</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-무용</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-자격/국가고시</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">학원-간호조무사</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-건축토목기술</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-공인중개사</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-국가고시</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-미용</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-배관용접</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-자동차운전</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-자동차정비</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-전기기술</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-제과기술</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-중장비</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-항공기술</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원/국가고시</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-창업취업취미</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">학원-경리</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-경영</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-공예</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-디자인</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-만화영화</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-목공예</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-목욕관리사</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-미싱자수</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-복장</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-속독</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-스튜디어스</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-캐드</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-피부미용</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원-컴퓨터</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">컴퓨터학원</a></li>
+                    </ul>
+                  </li>
+                  <li class="sub-category-item">
+                    <a href="#" class="sub-category-link">학원기타</a>
+                    <ul class="sub-sub-category-list">
+                      <li class="sub-sub-category-item"><a href="#">운전연수전문</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-기타</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-말더듬</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-모델</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-실내운전</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-심리변론</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원-역학</a></li>
+                      <li class="sub-sub-category-item"><a href="#">학원(종합)</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+          </ul>
+        </div>
+    </div>

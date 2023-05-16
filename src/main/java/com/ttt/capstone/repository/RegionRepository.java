@@ -109,16 +109,16 @@ public class RegionRepository {
         return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
     }
 
-    public List<SmallNameResponse> getJellabukdo(String smallCode) {
+    public List<SmallNameResponse> getJeollabukdo(String smallCode) {
         String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.jellabukdo WHERE smallCode = ?";
+                "FROM tttdatabase.jeollabukdo WHERE smallCode = ?";
 
         return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
     }
 
-    public List<SmallNameResponse> getJellanamdo(String smallCode) {
+    public List<SmallNameResponse> getJeollanamdo(String smallCode) {
         String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.jellanamdo WHERE smallCode = ?";
+                "FROM tttdatabase.jeollanamdo WHERE smallCode = ?";
 
         return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
     }

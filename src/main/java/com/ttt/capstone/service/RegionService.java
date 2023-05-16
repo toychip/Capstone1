@@ -62,12 +62,12 @@ public class RegionService {
         return regionRepository.getJejudo(smallCode);
     }
 
-    public List<SmallNameResponse> jellabukdo(String smallCode) {
-        return regionRepository.getJellabukdo(smallCode);
+    public List<SmallNameResponse> jeollabukdo(String smallCode) {
+        return regionRepository.getJeollabukdo(smallCode);
     }
 
-    public List<SmallNameResponse> jellanamdo(String smallCode) {
-        return regionRepository.getJellanamdo(smallCode);
+    public List<SmallNameResponse> jeollanamdo(String smallCode) {
+        return regionRepository.getJeollanamdo(smallCode);
     }
 
     public List<SmallNameResponse> sejong(String smallCode) {

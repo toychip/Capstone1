@@ -79,13 +79,13 @@ public class RegionController {
     public List<SmallNameResponse> jejudo(@PathVariable String smallCode) {
         return regionService.jejudo(smallCode);
     }
-    @GetMapping("/jellabukdo/{smallCode}")
-    public List<SmallNameResponse> jellabukdo(@PathVariable String smallCode) {
-        return regionService.jellabukdo(smallCode);
+    @GetMapping("/jeollabukdo/{smallCode}")
+    public List<SmallNameResponse> jeollabukdo(@PathVariable String smallCode) {
+        return regionService.jeollabukdo(smallCode);
     }
-    @GetMapping("/jellanamdo/{smallCode}")
-    public List<SmallNameResponse> jellanamdo(@PathVariable String smallCode) {
-        return regionService.jellanamdo(smallCode);
+    @GetMapping("/jeollanamdo/{smallCode}")
+    public List<SmallNameResponse> jeollanamdo(@PathVariable String smallCode) {
+        return regionService.jeollanamdo(smallCode);
     }
 
     @GetMapping("/sejong/{smallCode}")

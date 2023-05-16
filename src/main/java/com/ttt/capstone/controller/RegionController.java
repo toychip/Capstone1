@@ -62,7 +62,39 @@ public class RegionController {
         return regionService.getGyeonggido(smallCode);
     }
 
+    @GetMapping("/gyeongsangnamdo/{smallCode}")
+    public List<SmallNameResponse> gyeongsangnamdo(@PathVariable String smallCode) {
+        return regionService.gyeongsangnamdo(smallCode);
+    }
 
+    @GetMapping("/gyeongsangbukdo/{smallCode}")
+    public List<SmallNameResponse> gyeongsangbukdo(@PathVariable String smallCode) {
+        return regionService.gyeongsangbukdo(smallCode);
+    }
+    @GetMapping("/incheon/{smallCode}")
+    public List<SmallNameResponse> incheon(@PathVariable String smallCode) {
+        return regionService.incheon(smallCode);
+    }
+    @GetMapping("/jejudo/{smallCode}")
+    public List<SmallNameResponse> jejudo(@PathVariable String smallCode) {
+        return regionService.jejudo(smallCode);
+    }
+    @GetMapping("/jellabukdo/{smallCode}")
+    public List<SmallNameResponse> jellabukdo(@PathVariable String smallCode) {
+        return regionService.jellabukdo(smallCode);
+    }
+    @GetMapping("/jellanamdo/{smallCode}")
+    public List<SmallNameResponse> jellanamdo(@PathVariable String smallCode) {
+        return regionService.jellanamdo(smallCode);
+    }
 
+    @GetMapping("/sejong/{smallCode}")
+    public List<SmallNameResponse> sejong(@PathVariable String smallCode) {
+        return regionService.sejong(smallCode);
+    }
 
+    @GetMapping("/ulsan/{smallCode}")
+    public List<SmallNameResponse> ulsan(@PathVariable String smallCode) {
+        return regionService.ulsan(smallCode);
+    }
 }

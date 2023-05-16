@@ -97,6 +97,18 @@ public class RegionControllerTest {
 
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 광주")
+    void testFomdBySmallCode_gandwondo() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/gandwondo/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 광주")
     void testFomdBySmallCode_gwangju() throws Exception {
         String smallCode = "D01A03";
 
@@ -108,11 +120,11 @@ public class RegionControllerTest {
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 경기도")
-    void testFomdBySmallCode_gyeonggido() throws Exception {
+    @DisplayName("입력값(소분류)으로 조회 - 경상남도")
+    void testFomdBySmallCode_gyeongsangnamdo() throws Exception {
         String smallCode = "D01A03";
 
-        mockMvc.perform(get("/region/gyeonggido/{smallCode}", smallCode)
+        mockMvc.perform(get("/region/gyeongsangnamdo/{smallCode}", smallCode)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").isNotEmpty())
@@ -120,11 +132,83 @@ public class RegionControllerTest {
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 강원도")
-    void testFomdBySmallCode_gandwondo() throws Exception {
+    @DisplayName("입력값(소분류)으로 조회 - 경상남도")
+    void testFomdBySmallCode_gyeongsangbukdo() throws Exception {
         String smallCode = "D01A03";
 
-        mockMvc.perform(get("/region/gandwondo/{smallCode}", smallCode)
+        mockMvc.perform(get("/region/gyeongsangbukdo/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 인천")
+    void testFomdBySmallCode_incheon() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/incheon/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 제주도")
+    void testFomdBySmallCode_jejudo() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/jejudo/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 전라북도")
+    void testFomdBySmallCode_jellabukdo() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/jellabukdo/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 전라남도")
+    void testFomdBySmallCode_jellanamdo() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/jellanamdo/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 세종")
+    void testFomdBySmallCode_sejong() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/sejong/{smallCode}", smallCode)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 울산")
+    void testFomdBySmallCode_ulsan() throws Exception {
+        String smallCode = "D01A03";
+
+        mockMvc.perform(get("/region/ulsan/{smallCode}", smallCode)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").isNotEmpty())

@@ -25,207 +25,245 @@ public class RegionControllerTest {
 
     private static String smallCode = "D01A03";
 
+    // 서울
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 서울")
-    void testFindBySmallName() throws Exception {
-        
-
-        mockMvc.perform(get("/region/seoul/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    void testFindBySmallName_Seoul() throws Exception {
+        performRequest("/region/seoul/company", smallCode);
     }
 
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 서울")
+    void testFindBySmallNameAndDistrict_Seoul() throws Exception {
+        String district = "강동구";
+        performRequestWithDistrict("/region/seoul/company", smallCode, district);
+    }
+
+    // 부산
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 부산")
-    void testFomdBySmallCode_Busan() throws Exception {
-
-
-        mockMvc.perform(get("/region/busan/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    void testFindBySmallName_Busan() throws Exception {
+        performRequest("/region/busan/company", smallCode);
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 충청북도")
-    void testFomdBySmallCode_chungcheongbukdo() throws Exception {
-        
-
-        mockMvc.perform(get("/region/chungcheongbukdo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 부산")
+    void testFindBySmallNameAndDistrict_Busan() throws Exception {
+        String district = "해운대구";
+        performRequestWithDistrict("/region/busan/company", smallCode, district);
     }
 
-    @Test
-    @DisplayName("입력값(소분류)으로 조회 - 충청남도")
-    void testFomdBySmallCode_chungcheongnamdo() throws Exception {
-        
-
-        mockMvc.perform(get("/region/chungcheongnamdo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
-    }
-
+    // 대구
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 대구")
-    void testFomdBySmallCode_daegu() throws Exception {
-        
-
-        mockMvc.perform(get("/region/daegu/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    void testFindBySmallName_Daegu() throws Exception {
+        performRequest("/region/daegu/company", smallCode);
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 대전")
-    void testFomdBySmallCode_daejeon() throws Exception {
-        
-
-        mockMvc.perform(get("/region/daejeon/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 대구")
+    void testFindBySmallNameAndDistrict_Daegu() throws Exception {
+        String district = "수성구";
+        performRequestWithDistrict("/region/daegu/company", smallCode, district);
     }
 
-    @Test
-    @DisplayName("입력값(소분류)으로 조회 - 광주")
-    void testFomdBySmallCode_gandwondo() throws Exception {
-        
-
-        mockMvc.perform(get("/region/gandwondo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
-    }
-
-    @Test
-    @DisplayName("입력값(소분류)으로 조회 - 광주")
-    void testFomdBySmallCode_gwangju() throws Exception {
-        
-
-        mockMvc.perform(get("/region/gwangju/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
-    }
-
-    @Test
-    @DisplayName("입력값(소분류)으로 조회 - 경상남도")
-    void testFomdBySmallCode_gyeongsangnamdo() throws Exception {
-        
-
-        mockMvc.perform(get("/region/gyeongsangnamdo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
-    }
-
-    @Test
-    @DisplayName("입력값(소분류)으로 조회 - 경상남도")
-    void testFomdBySmallCode_gyeongsangbukdo() throws Exception {
-        
-
-        mockMvc.perform(get("/region/gyeongsangbukdo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
-    }
-
+    // 인천
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 인천")
-    void testFomdBySmallCode_incheon() throws Exception {
-        
-
-        mockMvc.perform(get("/region/incheon/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    void testFindBySmallName_Incheon() throws Exception {
+        performRequest("/region/incheon/company", smallCode);
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 제주도")
-    void testFomdBySmallCode_jejudo() throws Exception {
-        
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 인천")
+    void testFindBySmallNameAndDistrict_Incheon() throws Exception {
+        String district = "미추홀구";
+        performRequestWithDistrict("/region/incheon/company", smallCode, district);
+    }
 
-        mockMvc.perform(get("/region/jejudo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    // 광주
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 광주")
+    void testFindBySmallName_Gwangju() throws Exception {
+        performRequest("/region/gwangju/company", smallCode);
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 전라북도")
-    void testFomdBySmallCode_jeollabukdo() throws Exception {
-        
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 광주")
+    void testFindBySmallNameAndDistrict_Gwangju() throws Exception {
+        String district = "서구";
+        performRequestWithDistrict("/region/gwangju/company", smallCode, district);
+    }
 
-        mockMvc.perform(get("/region/jeollabukdo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    // 대전
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 대전")
+    void testFindBySmallName_Daejeon() throws Exception {
+        performRequest("/region/daejeon/company", smallCode);
     }
 
     @Test
-    @DisplayName("입력값(소분류)으로 조회 - 전라남도")
-    void testFomdBySmallCode_jeollanamdo() throws Exception {
-        
-
-        mockMvc.perform(get("/region/jeollanamdo/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 대전")
+    void testFindBySmallNameAndDistrict_Daejeon() throws Exception {
+        String district = "유성구";
+        performRequestWithDistrict("/region/daejeon/company", smallCode, district);
     }
 
-    @Test
-    @DisplayName("입력값(소분류)으로 조회 - 세종")
-    void testFomdBySmallCode_sejong() throws Exception {
-        
-
-        mockMvc.perform(get("/region/sejong/company")
-                        .param("smallCode", smallCode)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
-                .andDo(print());
-    }
-
+    // 울산
     @Test
     @DisplayName("입력값(소분류)으로 조회 - 울산")
-    void testFomdBySmallCode_ulsan() throws Exception {
-        
+    void testFindBySmallName_Ulsan() throws Exception {
+        performRequest("/region/ulsan/company", smallCode);
+    }
 
-        mockMvc.perform(get("/region/ulsan/company")
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 울산")
+    void testFindBySmallNameAndDistrict_Ulsan() throws Exception {
+        String district = "중구";
+        performRequestWithDistrict("/region/ulsan/company", smallCode, district);
+    }
+
+    // 제주도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 제주도")
+    void testFindBySmallName_Jeju() throws Exception {
+        performRequest("/region/jejudo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 제주도")
+    void testFindBySmallNameAndDistrict_Jeju() throws Exception {
+        String district = "서귀포시";
+        performRequestWithDistrict("/region/jejudo/company", smallCode, district);
+    }
+
+    // 세종
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 세종")
+    void testFindBySmallName_Sejong() throws Exception {
+        performRequest("/region/sejong/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 세종")
+    void testFindBySmallNameAndDistrict_Sejong() throws Exception {
+        String district = "조치원읍";
+        performRequestWithDistrict("/region/sejong/company", smallCode, district);
+    }
+
+    // 경기도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 경기도")
+    void testFindBySmallName_Gyeonggi() throws Exception {
+        performRequest("/region/gyeonggido/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 경기도")
+    void testFindBySmallNameAndDistrict_Gyeonggi() throws Exception {
+        String district = "용인시";
+        performRequestWithDistrict("/region/gyeonggido/company", smallCode, district);
+    }
+
+    // 강원도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 강원도")
+    void testFindBySmallName_Gangwon() throws Exception {
+        performRequest("/region/gandwondo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 강원도")
+    void testFindBySmallNameAndDistrict_Gangwon() throws Exception {
+        String district = "속초시";
+        performRequestWithDistrict("/region/gandwondo/company", smallCode, district);
+    }
+    // 충청북도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 충청북도")
+    void testFindBySmallName_Chungcheongbuk() throws Exception {
+        performRequest("/region/chungcheongbukdo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 충청북도")
+    void testFindBySmallNameAndDistrict_Chungcheongbuk() throws Exception {
+        String district = "청주시";
+        performRequestWithDistrict("/region/chungcheongbukdo/company", smallCode, district);
+    }
+
+    // 충청남도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 충청남도")
+    void testFindBySmallName_Chungcheongnam() throws Exception {
+        performRequest("/region/chungcheongnamdo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 충청남도")
+    void testFindBySmallNameAndDistrict_Chungcheongnam() throws Exception {
+        String district = "천안시";
+        performRequestWithDistrict("/region/chungcheongnamdo/company", smallCode, district);
+    }
+
+    // 경상북도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 경상북도")
+    void testFindBySmallName_Gyeongsangbuk() throws Exception {
+        performRequest("/region/gyeongsangbukdo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 경상북도")
+    void testFindBySmallNameAndDistrict_Gyeongsangbuk() throws Exception {
+        String district = "구미시";
+        performRequestWithDistrict("/region/gyeongsangbukdo/company", smallCode, district);
+    }
+
+    // 경상남도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 경상남도")
+    void testFindBySmallName_Gyeongsangnam() throws Exception {
+        performRequest("/region/gyeongsangnamdo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 경상남도")
+    void testFindBySmallNameAndDistrict_Gyeongsangnam() throws Exception {
+        String district = "창원시";
+        performRequestWithDistrict("/region/gyeongsangnamdo/company", smallCode, district);
+    }
+
+    // 전라북도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 전라북도")
+    void testFindBySmallName_Jeollabuk() throws Exception {
+        performRequest("/region/jeollabukdo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 전라북도")
+    void testFindBySmallNameAndDistrict_Jeollabuk() throws Exception {
+        String district = "전주시";
+        performRequestWithDistrict("/region/jeollabukdo/company", smallCode, district);
+    }
+
+    // 전라남도
+    @Test
+    @DisplayName("입력값(소분류)으로 조회 - 전라남도")
+    void testFindBySmallName_Jeollanam() throws Exception {
+        performRequest("/region/jeollanamdo/company", smallCode);
+    }
+
+    @Test
+    @DisplayName("입력값(소분류와 세부 지역명)으로 조회 - 전라남도")
+    void testFindBySmallNameAndDistrict_Jeollanam() throws Exception {
+        String district = "나주시";
+        performRequestWithDistrict("/region/jeollanamdo/company", smallCode, district);
+    }
+
+    private void performRequest(String url, String smallCode) throws Exception {
+        mockMvc.perform(get(url)
                         .param("smallCode", smallCode)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -233,4 +271,14 @@ public class RegionControllerTest {
                 .andDo(print());
     }
 
+    // district가 있는 요청을 위한 헬퍼 메소드
+    private void performRequestWithDistrict(String url, String smallCode, String district) throws Exception {
+        mockMvc.perform(get(url)
+                        .param("smallCode", smallCode)
+                        .param("district", district)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andDo(print());
+    }
 }

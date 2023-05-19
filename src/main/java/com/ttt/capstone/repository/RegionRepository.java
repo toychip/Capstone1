@@ -11,131 +11,100 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class RegionRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<SmallNameResponse> getSeoul(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.seoul WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getSeoul(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.seoul");
+    }
+    
+    public List<SmallNameResponse> getBusan(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.busan");
     }
 
-    public List<SmallNameResponse> getBusan(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.busan WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getChungcheongbukdo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.chungcheongbukdo");
     }
 
-    public List<SmallNameResponse> getChungcheongbukdo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.chungcheongbukdo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getChungcheongnamdo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.chungcheongnamdo");
     }
 
-    public List<SmallNameResponse> getChungcheongnamdo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.chungcheongnamdo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getDaegu(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.daegu");
     }
 
-    public List<SmallNameResponse> getDaegu(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.daegu WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getDaejeon(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.daejeon");
     }
 
-    public List<SmallNameResponse> getDaejeon(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.daejeon WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getGandwondo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.gandwondo");
     }
 
-    public List<SmallNameResponse> getGandwondo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.gandwondo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getGwangju(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.gwangju");
     }
 
-    public List<SmallNameResponse> getGwangju(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.gwangju WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getGyeonggido(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.gyeonggido");
     }
 
-    public List<SmallNameResponse> getGyeonggido(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.gyeonggido WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getGyeongsangnamdo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.gyeongsangnamdo");
     }
 
-    public List<SmallNameResponse> getGyeongsangnamdo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.gyeongsangnamdo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getGyeongsangbukdo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.gyeongsangbukdo");
     }
 
-    public List<SmallNameResponse> getGyeongsangbukdo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.gyeongsangbukdo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getIncheon(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.incheon");
     }
 
-    public List<SmallNameResponse> getIncheon(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.incheon WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getJejudo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.jejudo");
     }
 
-    public List<SmallNameResponse> getJejudo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.jejudo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getJeollabukdo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.jeollabukdo");
     }
 
-    public List<SmallNameResponse> getJeollabukdo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.jeollabukdo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getJeollanamdo(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.jeollanamdo");
     }
 
-    public List<SmallNameResponse> getJeollanamdo(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.jeollanamdo WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getSejong(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.sejong");
     }
 
-    public List<SmallNameResponse> getSejong(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.sejong WHERE smallCode = ?";
-
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+    public List<SmallNameResponse> getUlsan(String smallCode, Optional<String> district) {
+        return this.getRegionData(smallCode, district, "tttdatabase.ulsan");
     }
 
-    public List<SmallNameResponse> getUlsan(String smallCode) {
-        String queryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
-                "FROM tttdatabase.ulsan WHERE smallCode = ?";
+    private List<SmallNameResponse> getRegionData(String smallCode, Optional<String> district, String tableName) {
+        String baseQueryString = "SELECT number, name, localAddress, roadAddress, newPostalCode, smallName " +
+                "FROM " + tableName + " WHERE smallCode = ?";
 
-        return jdbcTemplate.query(queryString, new Object[]{smallCode}, new SmallNameResponseRowMapper());
+        List<Object> params = new ArrayList<>();
+        params.add(smallCode);
+
+        // If district is provided, add it to the query
+        // district가 null이 아니라면 해당 쿼리 추가
+        if (district.isPresent()) {
+            baseQueryString += " AND roadName LIKE ?";
+            params.add("%" + district.get() + "%");
+        }
+
+        return jdbcTemplate.query(baseQueryString, params.toArray(), new SmallNameResponseRowMapper());
     }
+
 
     private static class SmallNameResponseRowMapper implements RowMapper<SmallNameResponse> {
         @Override

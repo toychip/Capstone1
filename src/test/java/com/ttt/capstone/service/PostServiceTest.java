@@ -229,20 +229,7 @@ class PostServiceTest {
         });
     }
 
-    @Autowired
-    private RegionRepository regionRepository;
-    @Autowired
-    private RegionService regionService;
 
-    @Test
-    @DisplayName("알맞게 조회해오는지?")
-    void test10() {
-        String request = "편의점";
-        List<SmallNameResponse> seoul = regionService.getSeoul(request);
-//        for (SmallNameResponse smallNameResponse : seoul) {
-//            System.out.println("smallNameResponse = " + smallNameResponse);
-//        }
-    }
 
 
 }

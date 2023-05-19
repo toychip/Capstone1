@@ -47,9 +47,9 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.POST,"/auth/signup").permitAll() // 누구나 접근 가능
-                    .requestMatchers(HttpMethod.POST,"/auth/login").permitAll() // 누구나 접근 가능
-                    .requestMatchers(HttpMethod.GET,"/auth/login").permitAll() // 누구나 접근 가능
+                    .requestMatchers("/auth/signup").permitAll() // 누구나 접근 가능
+                    .requestMatchers("/auth/login").permitAll() // 누구나 접근 가능
+//                    .requestMatchers(HttpMethod.GET,"/auth/login").permitAll() // 누구나 접근 가능
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

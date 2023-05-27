@@ -49,8 +49,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                     .requestMatchers("/auth/signup").permitAll() // 누구나 접근 가능
                     .requestMatchers("/auth/login").permitAll() // 누구나 접근 가능
-//                    .requestMatchers(HttpMethod.GET,"/auth/login").permitAll() // 누구나 접근 가능
-                    .anyRequest().authenticated()
+//                .anyRequest().permitAll()  // 모든 요청에 대해 접근 허용
+                .anyRequest().authenticated()
+
                 .and()
                 .formLogin()
 //                    .loginPage("/auth/login")
@@ -68,9 +69,9 @@ public class SecurityConfig {
                         .alwaysRemember(false)
                         .tokenValiditySeconds(2592000)
                 )
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션 생성 정책을 "STATELESS"로 설정하여 세션을 사용하지 않도록 합니다.
-                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션 생성 정책을 "STATELESS"로 설정하여 세션을 사용하지 않도록 합니다.
+//                .and()
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }

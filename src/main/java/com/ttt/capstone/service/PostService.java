@@ -1,18 +1,25 @@
 package com.ttt.capstone.service;
 
+import com.ttt.capstone.domian.Member;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.domian.PostEditor;
 import com.ttt.capstone.exception.PostNotFound;
+import com.ttt.capstone.repository.MemberRepository;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreate;
 import com.ttt.capstone.request.PostEdit;
 import com.ttt.capstone.request.PostSearch;
+import com.ttt.capstone.response.AuthResponse;
 import com.ttt.capstone.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,11 +31,19 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
+    private final MemberRepository memberRepository;
     public void write(PostCreate postCreate){
         // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();  // 현재 사용자의 email 얻기
+        Member member = memberRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
+
         Post post = Post.builder()
                 .title(postCreate.getTitle())
                 .content(postCreate.getContent())
+                .member(member)
+                .writtenBy(member.getName())
                 .build();
         postRepository.save(post);
     }
@@ -39,6 +54,8 @@ public class PostService {
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
+                .writtenBy(post.getWrittenBy())
+                .writtenDateTime(post.getWrittenDateTime())
                 .build();
     }
     // 여러개의 게시글 조회
@@ -56,37 +73,42 @@ public class PostService {
                 .collect(Collectors.toList());}
     @Transactional
     public void edit(Long id, PostEdit postEdit){
-        Post post = postRepository.findById(id)
-                .orElseThrow(PostNotFound::new);
+        // 없는 id일경우
+        Post post = postRepository.findById(id).orElseThrow(PostNotFound::new);
+
+        Member currentMember = getCurrentMember();
+        if (!post.getMember().getId().equals(currentMember.getId())) {
+            throw new AccessDeniedException("게시물을 수정할 권한이 없습니다.");
+        }
         PostEditor.PostEditorBuilder editorBuitor = post.toEditor();
         PostEditor postEditor = editorBuitor.title(postEdit.getTitle())
                 .content(postEdit.getContent())
                 .build();
-        post.edit(postEditor);
-//            이러한 불편한 상황들 때문에 postEditor를 사용함
-//        post.edit(postEdit.getTitle() != null ? postEdit.getTitle() : post.getTitle(),
-//                postEdit.getContent() != null ? postEdit.getContent() : post.getContent());
-//        patch할때 body에 수정 정보를 내려 줄 것이면 아래와 같게
-//        return new PostResponse(post);
+        post.edit(postEditor, currentMember, currentMember.getName());
     }
     public void delete(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(PostNotFound::new);
         // -> 존재하는 경우
+        Member currentMember = getCurrentMember();
+        if (!post.getMember().getId().equals(currentMember.getId())) {
+            throw new AccessDeniedException("게시물을 삭제할 권한이 없습니다.");
+        }
         postRepository.delete(post);}
-    public Post writeNn(PostCreate postCreate){
-        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
-        Post post = Post.builder()
-                .title(postCreate.getTitle())
-                .content(postCreate.getContent())
-                .build();
-        return postRepository.save(post);}
-    public Long writePk(PostCreate postCreate){
-        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
-        Post post = Post.builder()
-                .title(postCreate.getTitle())
-                .content(postCreate.getContent())
-                .build();
-        return post.getId();
+
+    private Member getCurrentMember() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName(); // 현재 사용자의 email 얻기
+        return memberRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
     }
+
+    public AuthResponse getCurrentMemberInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName(); // 현재 사용자의 email 얻기
+        Member member = memberRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
+        return new AuthResponse(member.getEmail(), member.getName());
+    }
+
 }

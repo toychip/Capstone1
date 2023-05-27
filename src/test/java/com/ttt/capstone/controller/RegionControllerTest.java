@@ -267,7 +267,7 @@ public class RegionControllerTest {
                         .param("smallCode", smallCode)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andExpect(jsonPath("$.content[0].name").isNotEmpty())
                 .andDo(print());
     }
 
@@ -278,7 +278,7 @@ public class RegionControllerTest {
                         .param("district", district)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").isNotEmpty())
+                .andExpect(jsonPath("$.content[0].name").isNotEmpty())
                 .andDo(print());
     }
 }

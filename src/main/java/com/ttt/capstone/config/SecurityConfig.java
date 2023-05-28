@@ -44,6 +44,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .and()
                 .cors()
                 .and()
                 .authorizeHttpRequests()
@@ -65,13 +68,10 @@ public class SecurityConfig {
                     response.sendRedirect("/auth/login"); // 인증되지 않은 사용자에게 접근이 거부될 때 로그인 페이지로 리다이렉션
                 })
                 .and()
-                .rememberMe(rm -> rm.rememberMeParameter("remember")
-                        .alwaysRemember(false)
-                        .tokenValiditySeconds(2592000)
-                )
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // 세션 생성 정책을 "STATELESS"로 설정하여 세션을 사용하지 않도록 합니다.
-//                .and()
+//                .rememberMe(rm -> rm.rememberMeParameter("remember")
+//                        .alwaysRemember(false)
+//                        .tokenValiditySeconds(2592000)
+//                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
@@ -94,6 +94,7 @@ public class SecurityConfig {
 
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:8080");
+        config.addAllowedOrigin("http://localhost:3000");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 

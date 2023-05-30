@@ -1,64 +1,58 @@
-//package com.ttt.capstone.config;
+package com.ttt.capstone.config.data.security;//package com.gameproject.flash.config.security;
 //
-//import com.ttt.capstone.config.data.UserPrincipal;
-//import com.ttt.capstone.domian.Member;
-//import com.ttt.capstone.repository.MemberRepository;
+//import com.gameproject.flash.config.UserPrincipal;
+//import com.gameproject.flash.domian.Member;
+//import com.gameproject.flash.repository.MemberRepository;
+//import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.config.Customizer;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.builders.WebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 //import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-//import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 //import org.springframework.security.config.http.SessionCreationPolicy;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
-//import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
-//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 //import org.springframework.security.web.SecurityFilterChain;
+//import org.springframework.session.web.http.DefaultCookieSerializer;
 //import org.springframework.web.cors.CorsConfiguration;
 //import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 //import org.springframework.web.filter.CorsFilter;
 //
-//import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+//import java.util.Arrays;
 //
 //@Configuration
-////@EnableWebSecurity(debug = true)    // Todo 배포 전에 False로 바꾸기
+//@EnableWebSecurity
 //public class SecurityConfig {
 //
 //    @Bean   //
 //    public WebSecurityCustomizer webSecurityCustomizer(){
 //        return web -> web.ignoring()
-//                .requestMatchers("/error", "/favicon.ico") // "/css/**" ,
-//                .requestMatchers("/docs/index.html");
+//                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+//        // 정적 자원에 대해서 Security를 적용하지 않음으로 설정
+//
 //    }
 //
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        return http
 //                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-//                .and()
+//                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and()
 //                .cors()
 //                .and()
 //                .authorizeHttpRequests()
 //                    .requestMatchers("/auth/signup").permitAll() // 누구나 접근 가능
 //                    .requestMatchers("/auth/login").permitAll() // 누구나 접근 가능
-//                    .requestMatchers("/posts/**").permitAll() // 누구나 접근 가능
-////                .anyRequest().permitAll()  // 모든 요청에 대해 접근 허용
+//                    .requestMatchers("/").permitAll()
+//                    .requestMatchers("/game/**").permitAll()
+//
 //                .anyRequest().authenticated()
 //
 //                .and()
 //                .formLogin()
-////                    .loginPage("/auth/login")
+//                    .loginPage("/auth/login")
 //                    .loginProcessingUrl("/auth/login")
 //                    .usernameParameter("username")
 //                    .passwordParameter("password")
@@ -69,10 +63,6 @@
 //                    response.sendRedirect("/auth/login"); // 인증되지 않은 사용자에게 접근이 거부될 때 로그인 페이지로 리다이렉션
 //                })
 //                .and()
-////                .rememberMe(rm -> rm.rememberMeParameter("remember")
-////                        .alwaysRemember(false)
-////                        .tokenValiditySeconds(2592000)
-////                )
 //                .csrf(AbstractHttpConfigurer::disable)
 //                .build();
 //    }
@@ -90,16 +80,13 @@
 //    // CORS 설정을 위한 빈을 추가합니다.
 //    @Bean
 //    public CorsFilter corsFilter() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://5laksil.netlify.app/")); // 허용되는 도메인 목록 설정
+//        configuration.setAllowedMethods(Arrays.asList("*")); // 허용되는 HTTP 메서드 목록 설정
+//        configuration.setAllowCredentials(true); // 쿠키 등을 허용
+//        configuration.setAllowedHeaders(Arrays.asList("*")); // 허용되는 헤더 목록 설정
 //        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration();
-//
-//        config.setAllowCredentials(true);
-//        config.addAllowedOrigin("http://localhost:8080");
-//        config.addAllowedOrigin("http://localhost:3000");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("*");
-//
-//        source.registerCorsConfiguration("/**", config);
+//        source.registerCorsConfiguration("/**", configuration);
 //        return new CorsFilter(source);
 //    }
 //
@@ -113,4 +100,11 @@
 //                64);
 //    }
 //
+////    @Bean
+////    public DefaultCookieSerializer cookieSerializer() {
+////        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+////        serializer.setSameSite(""); // SameSite 설정을 None으로 변경
+//////        serializer.setUseSecureCookie(true); // Secure 설정 활성화
+////        return serializer;
+////    }
 //}

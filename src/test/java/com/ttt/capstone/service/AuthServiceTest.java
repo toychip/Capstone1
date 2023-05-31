@@ -4,7 +4,7 @@
 //import com.ttt.capstone.exception.AlreadyExistsEmailException;
 //import com.ttt.capstone.exception.InvalidSigninInformation;
 //import com.ttt.capstone.repository.MemberRepository;
-//import com.ttt.capstone.request.Signup;
+//import com.ttt.capstone.request.SignupRequest;
 //import org.junit.jupiter.api.*;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +34,7 @@
 ////    void test1(){
 ////        //given
 ////        PasswordEncoder encoder = new PasswordEncoder();
-////        Signup signup = Signup.builder()
+////        SignupRequest signup = SignupRequest.builder()
 ////                .email("manager@naver.com")
 ////                .password("1234@@")
 ////                .name("임준형")
@@ -66,7 +66,7 @@
 //                .build();
 //        memberRepository.save(prevMember);
 //
-//        Signup signup = Signup.builder()
+//        SignupRequest signup = SignupRequest.builder()
 //                .email("toytoy@naver.com")
 //                .password("1234")
 //                .name("임준형")

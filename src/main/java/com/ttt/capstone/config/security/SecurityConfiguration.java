@@ -1,4 +1,4 @@
-package com.ttt.capstone.config.data.security;
+package com.ttt.capstone.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,10 +10,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -26,12 +25,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+
                 .csrf().disable()
+                .cors().and()
                 .authorizeHttpRequests()
                     .requestMatchers("/auth/signup").permitAll() // 누구나 접근 가능
                     .requestMatchers("/auth/login").permitAll() // 누구나 접근 가능
-//                    .requestMatchers("/").permitAll()
-//                    .requestMatchers("/game/**").permitAll()
+                    .requestMatchers("/").permitAll()
+                    .requestMatchers("/region/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
@@ -45,13 +46,13 @@ public class SecurityConfiguration {
 
     @Bean
     public CorsFilter corsFilter() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // 허용되는 도메인 목록 설정
-        configuration.setAllowedMethods(Arrays.asList("*")); // 허용되는 HTTP 메서드 목록 설정
-        configuration.setAllowCredentials(true); // 쿠키 등을 허용
-        configuration.setAllowedHeaders(Arrays.asList("*")); // 허용되는 헤더 목록 설정
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        CorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*"); // All origins are allowed, change this to your preferred origins
+        config.addAllowedHeader("*"); // All headers are allowed, change this to your preferred headers
+        config.addAllowedMethod("*"); // All methods are allowed, change this to your preferred methods
+        ((UrlBasedCorsConfigurationSource) source).registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
 }

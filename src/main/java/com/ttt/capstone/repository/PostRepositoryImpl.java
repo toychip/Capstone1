@@ -1,9 +1,10 @@
 package com.ttt.capstone.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ttt.capstone.domian.Post;
 import com.ttt.capstone.domian.QPost;
-import com.ttt.capstone.request.PostSearch;
+import com.ttt.capstone.request.PostSearchRequest;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -14,12 +15,38 @@ public class PostRepositoryImpl implements PostRepositoryCustom{
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public List<Post> getList(PostSearch postSearch) {
-        int size = (postSearch.getSize() == null) ? 10 : postSearch.getSize();
+    public List<Post> getList(PostSearchRequest postSearchRequest) {
+        int size = (postSearchRequest.getSize() == null) ? 10 : postSearchRequest.getSize();
         return jpaQueryFactory.selectFrom(QPost.post)
                 .limit(size)
 
-                .offset(postSearch.getOffset())
+                .offset(postSearchRequest.getOffset())
+                .orderBy(QPost.post.id.desc())
+                .fetch();
+    }
+
+    @Override
+    public List<Post> search(PostSearchRequest postSearchRequest) {
+        int size = (postSearchRequest.getSize() == null) ? 10 : postSearchRequest.getSize();
+
+        BooleanBuilder builder = new BooleanBuilder();
+
+        if (postSearchRequest.getTitle() != null) {
+            builder.and(QPost.post.title.containsIgnoreCase(postSearchRequest.getTitle()));
+        }
+
+        if (postSearchRequest.getContent() != null) {
+            builder.and(QPost.post.content.contains(postSearchRequest.getContent()));
+        }
+
+        if (postSearchRequest.getWrittenBy() != null) {
+            builder.and(QPost.post.writtenBy.containsIgnoreCase(postSearchRequest.getWrittenBy()));
+        }
+
+        return jpaQueryFactory.selectFrom(QPost.post)
+                .where(builder)
+                .limit(size)
+                .offset(postSearchRequest.getOffset())
                 .orderBy(QPost.post.id.desc())
                 .fetch();
     }

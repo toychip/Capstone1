@@ -1,4 +1,4 @@
-package com.ttt.capstone.config.data.security;
+package com.ttt.capstone.config.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,26 +1,20 @@
 package com.ttt.capstone.controller;
 
 
-import com.ttt.capstone.domian.Post;
-import com.ttt.capstone.exception.InvalidRequest;
-import com.ttt.capstone.request.PostCreate;
-import com.ttt.capstone.request.PostEdit;
-import com.ttt.capstone.request.PostSearch;
-import com.ttt.capstone.response.AuthResponse;
+
+import com.ttt.capstone.request.PostCreateRequest;
+import com.ttt.capstone.request.PostEditRequest;
+import com.ttt.capstone.request.PostSearchRequest;
 import com.ttt.capstone.response.PostResponse;
 import com.ttt.capstone.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -39,13 +33,32 @@ public class PostController {
 
     private final PostService postService;
 
+
     @PostMapping("/posts")
-//    public Map<String, String> post(@RequestBody @Valid PostCreate request){
-    public void post(@RequestBody @Valid PostCreate request) {
-            request.validate();
-            postService.write(request);
+//    public Map<String, String> post(@RequestBody @Valid PostCreateRequest request){
+    public void post(@RequestBody @Valid PostCreateRequest request) {
+        request.validate();
+        postService.write(request);
     }
 
+    @GetMapping("/posts")
+    public ResponseEntity<List<PostResponse>> search(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) String writtenBy
+    ) {
+        PostSearchRequest postSearchRequest = PostSearchRequest.builder()
+                .page(page)
+                .size(size)
+                .title(title)
+                .content(content)
+                .writtenBy(writtenBy)
+                .build();
+
+        return ResponseEntity.ok(postService.search(postSearchRequest));
+    }
 
     @GetMapping("/posts/{postId}")
     public PostResponse get(@PathVariable Long postId) {
@@ -56,13 +69,13 @@ public class PostController {
 
     //조회 API
     // 여러개의 글 조회 API (1개의 글 Post을 가져오는 기능)
-    @GetMapping("/posts")
-    public List<PostResponse> getList(@ModelAttribute PostSearch postSearch) {
-        return postService.getList(postSearch);
-    }
+//    @GetMapping("/posts")
+//    public List<PostResponse> getList(@ModelAttribute PostSearchRequest postSearch) {
+//        return postService.getList(postSearch);
+//    }
 
     @PatchMapping("/posts/{postId}")
-    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEdit request){
+    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEditRequest request){
         postService.edit(postId, request);
     }
 
@@ -70,32 +83,6 @@ public class PostController {
     public void delete(@PathVariable Long postId){
         postService.delete(postId);
     }
-    @GetMapping("/mypage")
-    public AuthResponse getMemberInfo() {
-        return postService.getCurrentMemberInfo();
-    }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

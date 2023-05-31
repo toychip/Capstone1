@@ -6,16 +6,13 @@ import com.ttt.capstone.domian.PostEditor;
 import com.ttt.capstone.exception.PostNotFound;
 import com.ttt.capstone.repository.MemberRepository;
 import com.ttt.capstone.repository.PostRepository;
-import com.ttt.capstone.request.PostCreate;
-import com.ttt.capstone.request.PostEdit;
-import com.ttt.capstone.request.PostSearch;
+import com.ttt.capstone.request.PostCreateRequest;
+import com.ttt.capstone.request.PostEditRequest;
+import com.ttt.capstone.request.PostSearchRequest;
 import com.ttt.capstone.response.AuthResponse;
 import com.ttt.capstone.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,16 +29,16 @@ import java.util.stream.Collectors;
 public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
-    public void write(PostCreate postCreate){
-        // postCreate -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
+    public void write(PostCreateRequest postCreateRequest){
+        // postCreateRequest -> Entity 형태로 바꿔주어야함. postCreate는 RequestDTO이기 때문
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();  // 현재 사용자의 email 얻기
         Member member = memberRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
 
         Post post = Post.builder()
-                .title(postCreate.getTitle())
-                .content(postCreate.getContent())
+                .title(postCreateRequest.getTitle())
+                .content(postCreateRequest.getContent())
                 .member(member)
                 .writtenBy(member.getName())
                 .build();
@@ -58,21 +55,20 @@ public class PostService {
                 .writtenDateTime(post.getWrittenDateTime())
                 .build();
     }
-    // 여러개의 게시글 조회
-//    public List<PostResponse> getList(Pageable pageable) {
-////        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
-//
-//        return postRepository.getList(1).stream()
-//                .map(post -> new PostResponse(post))
-//                .collect(Collectors.toList());
-//    }
-    public List<PostResponse> getList(PostSearch postSearch) {
+
+    public List<PostResponse> search(PostSearchRequest postSearchRequest) {
+        return postRepository.search(postSearchRequest).stream()
+                .map(PostResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<PostResponse> getList(PostSearchRequest postSearchRequest) {
 //        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
-        return postRepository.getList(postSearch).stream()
+        return postRepository.getList(postSearchRequest).stream()
                 .map(PostResponse::new)
                 .collect(Collectors.toList());}
     @Transactional
-    public void edit(Long id, PostEdit postEdit){
+    public void edit(Long id, PostEditRequest postEditRequest){
         // 없는 id일경우
         Post post = postRepository.findById(id).orElseThrow(PostNotFound::new);
 
@@ -81,8 +77,8 @@ public class PostService {
             throw new AccessDeniedException("게시물을 수정할 권한이 없습니다.");
         }
         PostEditor.PostEditorBuilder editorBuitor = post.toEditor();
-        PostEditor postEditor = editorBuitor.title(postEdit.getTitle())
-                .content(postEdit.getContent())
+        PostEditor postEditor = editorBuitor.title(postEditRequest.getTitle())
+                .content(postEditRequest.getContent())
                 .build();
         post.edit(postEditor, currentMember, currentMember.getName());
     }

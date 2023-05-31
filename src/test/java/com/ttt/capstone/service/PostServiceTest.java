@@ -3,9 +3,9 @@
 //import com.ttt.capstone.domian.Post;
 //import com.ttt.capstone.exception.PostNotFound;
 //import com.ttt.capstone.repository.PostRepository;
-//import com.ttt.capstone.request.PostCreate;
-//import com.ttt.capstone.request.PostEdit;
-//import com.ttt.capstone.request.PostSearch;
+//import com.ttt.capstone.request.PostCreateRequest;
+//import com.ttt.capstone.request.PostEditRequest;
+//import com.ttt.capstone.request.PostSearchRequest;
 //import com.ttt.capstone.response.PostResponse;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.DisplayName;
@@ -37,7 +37,7 @@
 //    @DisplayName("글 작성")
 //    void test1() {
 //        //given
-//        PostCreate postCreate = PostCreate.builder()
+//        PostCreateRequest postCreate = PostCreateRequest.builder()
 //                .title("제목입니다.")
 //                .content("내용입니다.")
 //                .build();
@@ -87,7 +87,7 @@
 //        postRepository.saveAll(resultPosts);
 //
 //        // Pageable pageableRequest = PageRequest.of(0, 10);//, Sort.Direction.DESC, "id");
-//        PostSearch postSearch = PostSearch.builder()
+//        PostSearchRequest postSearch = PostSearchRequest.builder()
 //                .page(1)
 ////                .size(10) - 한페이지당 여러개 보기
 //                .build();
@@ -110,7 +110,7 @@
 //
 //    postRepository.save(post);
 //
-//        PostEdit postEdit = PostEdit.builder()
+//        PostEditRequest postEdit = PostEditRequest.builder()
 //                .title(null)   // 이름을 바꿨으므로 내용은 안 보내서 null로 들어온 경우
 //                .content("수정된 내용이지롱")
 //                .build();
@@ -136,7 +136,7 @@
 //
 //        postRepository.save(post);
 //
-//        PostEdit postEdit = PostEdit.builder()
+//        PostEditRequest postEdit = PostEditRequest.builder()
 //                .title("임준형")
 //                .content("저것은 내용이지롱")
 //                .build();
@@ -213,7 +213,7 @@
 //
 //        postRepository.save(post);
 //
-//        PostEdit postEdit = PostEdit.builder()
+//        PostEditRequest postEdit = PostEditRequest.builder()
 //                .title("임준형")
 //                .content("저것은 내용이지롱")
 //                .build();

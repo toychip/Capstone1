@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.ttt'
-version = '0.6.0-TokenVersion'
+version = '0.6.2-TokenVersion'
 sourceCompatibility = '17'
 
 configurations {
@@ -31,7 +31,7 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-test'
-	implementation 'org.springframework.session:spring-session-jdbc'
+//	implementation 'org.springframework.session:spring-session-jdbc'
 
 	implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
 

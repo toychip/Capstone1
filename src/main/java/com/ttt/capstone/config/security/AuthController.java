@@ -1,4 +1,4 @@
-package com.ttt.capstone.config.data.security;
+package com.ttt.capstone.config.security;
 
 
 import lombok.RequiredArgsConstructor;
@@ -17,14 +17,14 @@ public class AuthController {
     private final AuthenticationService service;
 
 
-    @PostMapping("/auth/signup")
+    @PostMapping("/auth/signup") // 회원가입
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request){
 
         return ResponseEntity.ok(service.register(request));
     }
 
-    @PostMapping("/auth/login")
+    @PostMapping("/auth/login") // 로그인
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request){
         return ResponseEntity.ok(service.authenticate(request));

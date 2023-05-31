@@ -2,7 +2,6 @@ package com.ttt.capstone.controller;
 
 import com.ttt.capstone.regionentity.*;
 import com.ttt.capstone.service.RegionService;
-import com.ttt.capstone.service.SmallNameResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;

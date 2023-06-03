@@ -104,7 +104,7 @@ public class PostService {
         String username = authentication.getName(); // 현재 사용자의 email 얻기
         Member member = memberRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
-        return new AuthResponse(member.getEmail(), member.getName());
+        return new AuthResponse(member.getEmail(), member.getName(), member.getPhoneNumber());
     }
 
 }

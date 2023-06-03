@@ -3,6 +3,7 @@ package com.ttt.capstone.config.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,9 +31,12 @@ public class SecurityConfiguration {
                 .cors().and()
                 .authorizeHttpRequests()
                     .requestMatchers("/auth/signup").permitAll() // 누구나 접근 가능
+                    .requestMatchers("/auth/signup-business").permitAll() // 누구나 접근 가능
                     .requestMatchers("/auth/login").permitAll() // 누구나 접근 가능
                     .requestMatchers("/").permitAll()
                     .requestMatchers("/region/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/advertisement/**").hasRole("CEO") // CEO role이 있을 때만 POST 가능
+                    .requestMatchers(HttpMethod.POST, "/review/**").hasRole("USER") // CEO role이 있을 때만 POST 가능
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

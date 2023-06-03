@@ -18,10 +18,17 @@ public class AuthController {
 
 
     @PostMapping("/auth/signup") // 회원가입
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<AuthenticationResponse> joinGuest(
             @RequestBody RegisterRequest request){
 
         return ResponseEntity.ok(service.register(request));
+    }
+
+    @PostMapping("/auth/signup-business") // 회원가입 - 사업자
+    public ResponseEntity<AuthenticationResponse> joinBusiness(
+            @RequestBody RegisterRequest request){
+
+        return ResponseEntity.ok(service.registerBusiness(request));
     }
 
     @PostMapping("/auth/login") // 로그인

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.ttt'
-version = '0.6.2-TokenVersion'
+version = '0.7.3-SignupBusiness'
 sourceCompatibility = '17'
 
 configurations {

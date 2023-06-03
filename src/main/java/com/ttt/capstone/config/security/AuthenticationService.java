@@ -34,7 +34,29 @@ public class AuthenticationService {
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .phoneNumber(request.getPhoneNumber())
                 .role(Role.USER)
+                .build();
+        repository.save(user);
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
+
+    public AuthenticationResponse registerBusiness(RegisterRequest request) {   // 회원가입 - 사장님
+
+        Optional<Member> memberOptional = repository.findByEmail(request.getEmail());
+        if (memberOptional.isPresent()) {
+            throw new AlreadyExistsEmailException();
+        }
+
+        var user = Member.builder()
+                .name(request.getName())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .phoneNumber(request.getPhoneNumber())
+                .role(Role.CEO)
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);

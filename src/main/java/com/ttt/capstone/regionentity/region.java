@@ -64,5 +64,4 @@ public abstract class region {
 
     @Column(name = "latitude", nullable = false)
     private String latitude;
-
 }

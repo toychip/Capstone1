@@ -5,7 +5,7 @@ import com.ttt.capstone.request.SearchRequest;
 
 import java.util.List;
 
-public interface PostRepositoryCustom {
+public interface ReviewRepositoryCustom {
 
     List<Post> getList(SearchRequest searchRequest);
     List<Post> search(SearchRequest searchRequest);

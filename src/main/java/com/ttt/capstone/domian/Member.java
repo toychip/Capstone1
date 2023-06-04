@@ -42,8 +42,16 @@ public class Member implements UserDetails {
         this.password = password;
         this.phoneNumber = phoneNumber;
     }
+
     public void mappingPost(Post post) {
         postList.add(post);
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<Review> reviewList = new ArrayList<>();
+
+    public void mappingReview(Review review) {
+        reviewList.add(review);
     }
 
     @Override

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class PostSearchRequest {
+public class SearchRequest {
 
     private static final int MAX_SIZE = 2000;
 
@@ -21,7 +21,7 @@ public class PostSearchRequest {
     private String writtenBy; // 작성자를 검색할 키워드
 
     @Builder
-    public PostSearchRequest(Integer page, Integer size, String title, String content, String writtenBy) {
+    public SearchRequest(Integer page, Integer size, String title, String content, String writtenBy) {
         this.page = (page == null) ? 1 : page;
         this.size = (size == null) ? 10 : size;
         this.title = title;

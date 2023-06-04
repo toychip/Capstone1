@@ -4,7 +4,7 @@ package com.ttt.capstone.controller;
 
 import com.ttt.capstone.request.PostCreateRequest;
 import com.ttt.capstone.request.PostEditRequest;
-import com.ttt.capstone.request.PostSearchRequest;
+import com.ttt.capstone.request.SearchRequest;
 import com.ttt.capstone.response.PostResponse;
 import com.ttt.capstone.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +49,7 @@ public class PostController {
             @RequestParam(required = false) String content,
             @RequestParam(required = false) String writtenBy
     ) {
-        PostSearchRequest postSearchRequest = PostSearchRequest.builder()
+        SearchRequest searchRequest = SearchRequest.builder()
                 .page(page)
                 .size(size)
                 .title(title)
@@ -57,7 +57,7 @@ public class PostController {
                 .writtenBy(writtenBy)
                 .build();
 
-        return ResponseEntity.ok(postService.search(postSearchRequest));
+        return ResponseEntity.ok(postService.search(searchRequest));
     }
 
     @GetMapping("/posts/{postId}")
@@ -70,7 +70,7 @@ public class PostController {
     //조회 API
     // 여러개의 글 조회 API (1개의 글 Post을 가져오는 기능)
 //    @GetMapping("/posts")
-//    public List<PostResponse> getList(@ModelAttribute PostSearchRequest postSearch) {
+//    public List<PostResponse> getList(@ModelAttribute SearchRequest postSearch) {
 //        return postService.getList(postSearch);
 //    }
 

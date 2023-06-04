@@ -8,7 +8,7 @@ import com.ttt.capstone.repository.MemberRepository;
 import com.ttt.capstone.repository.PostRepository;
 import com.ttt.capstone.request.PostCreateRequest;
 import com.ttt.capstone.request.PostEditRequest;
-import com.ttt.capstone.request.PostSearchRequest;
+import com.ttt.capstone.request.SearchRequest;
 import com.ttt.capstone.response.AuthResponse;
 import com.ttt.capstone.response.PostResponse;
 import lombok.RequiredArgsConstructor;
@@ -56,15 +56,15 @@ public class PostService {
                 .build();
     }
 
-    public List<PostResponse> search(PostSearchRequest postSearchRequest) {
-        return postRepository.search(postSearchRequest).stream()
+    public List<PostResponse> search(SearchRequest searchRequest) {
+        return postRepository.search(searchRequest).stream()
                 .map(PostResponse::new)
                 .collect(Collectors.toList());
     }
 
-    public List<PostResponse> getList(PostSearchRequest postSearchRequest) {
+    public List<PostResponse> getList(SearchRequest searchRequest) {
 //        Pageable pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "id"));
-        return postRepository.getList(postSearchRequest).stream()
+        return postRepository.getList(searchRequest).stream()
                 .map(PostResponse::new)
                 .collect(Collectors.toList());}
     @Transactional

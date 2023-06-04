@@ -5,7 +5,7 @@
 //import com.ttt.capstone.repository.PostRepository;
 //import com.ttt.capstone.request.PostCreateRequest;
 //import com.ttt.capstone.request.PostEditRequest;
-//import com.ttt.capstone.request.PostSearchRequest;
+//import com.ttt.capstone.request.SearchRequest;
 //import com.ttt.capstone.response.PostResponse;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.DisplayName;
@@ -87,7 +87,7 @@
 //        postRepository.saveAll(resultPosts);
 //
 //        // Pageable pageableRequest = PageRequest.of(0, 10);//, Sort.Direction.DESC, "id");
-//        PostSearchRequest postSearch = PostSearchRequest.builder()
+//        SearchRequest postSearch = SearchRequest.builder()
 //                .page(1)
 ////                .size(10) - 한페이지당 여러개 보기
 //                .build();

@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class PostRepositoryImpl implements PostRepositoryCustom{
+public class ReviewRepositoryImpl implements PostRepositoryCustom{
 
     private final JPAQueryFactory jpaQueryFactory;
 

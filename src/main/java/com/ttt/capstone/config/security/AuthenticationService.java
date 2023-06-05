@@ -39,9 +39,12 @@ public class AuthenticationService {
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
+        AuthenticationResponse response = AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+
+        response.setRedirectUrl("/");
+        return response;
     }
 
     public AuthenticationResponse registerBusiness(RegisterRequest request) {   // 회원가입 - 사장님
@@ -60,13 +63,16 @@ public class AuthenticationService {
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
+        AuthenticationResponse response = AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+
+        response.setRedirectUrl("/");
+        return response;
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) { // 로그인
-        try{
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -82,11 +88,5 @@ public class AuthenticationService {
 
         response.setRedirectUrl("/");
         return response;
-        } catch (AuthenticationException e) {
-            // If login fails, redirect to "/login"
-            AuthenticationResponse response = new AuthenticationResponse();
-            response.setRedirectUrl("/auth/login");
-            return response;
-        }
     }
 }

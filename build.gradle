@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.ttt'
-version = '0.7.4-Review'
+version = '0.7.5-FailedLoginResponseEntity'
 sourceCompatibility = '17'
 
 configurations {

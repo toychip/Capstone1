@@ -35,15 +35,15 @@ public class Review {
         this.writtenDateTime = LocalDateTime.now();
     }
 
-    public PostEditor.PostEditorBuilder toEditor(){
-        return PostEditor.builder()
+    public ReviewEditor.ReviewEditorBuilder toEditor(){
+        return ReviewEditor.builder()
                 .title(title)
                 .content(content);
     }
 
-    public void edit(PostEditor postEditor, Member member, String writtenBy) {
-        title = postEditor.getTitle();
-        content = postEditor.getContent();
+    public void edit(ReviewEditor reviewEditor, Member member, String writtenBy) {
+        title = reviewEditor.getTitle();
+        content = reviewEditor.getContent();
         this.member = member;
         this.writtenBy = writtenBy;
         this.writtenDateTime = LocalDateTime.now();

@@ -1,11 +1,13 @@
 package com.ttt.capstone.controller;
 
 
-import com.ttt.capstone.request.PostCreateRequest;
-import com.ttt.capstone.request.PostEditRequest;
+
+import com.ttt.capstone.request.ReviewCreateRequest;
+import com.ttt.capstone.request.ReviewEditRequest;
 import com.ttt.capstone.request.SearchRequest;
-import com.ttt.capstone.response.PostResponse;
-import com.ttt.capstone.service.PostService;
+
+import com.ttt.capstone.response.ReviewResponse;
+import com.ttt.capstone.service.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,18 +21,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewController {
 
-    private final PostService postService;
+    private final ReviewService reviewService;
 
 
     @PostMapping("/review")
 //    public Map<String, String> post(@RequestBody @Valid PostCreateRequest request){
-    public void post(@RequestBody @Valid PostCreateRequest request) {
+    public void post(@RequestBody @Valid ReviewCreateRequest request) {
         request.validate();
-        postService.write(request);
+        reviewService.write(request);
     }
 
     @GetMapping("/review")
-    public ResponseEntity<List<PostResponse>> search(
+    public ResponseEntity<List<ReviewResponse>> search(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size,
             @RequestParam(required = false) String title,
@@ -45,31 +47,24 @@ public class ReviewController {
                 .writtenBy(writtenBy)
                 .build();
 
-        return ResponseEntity.ok(postService.search(searchRequest));
+        return ResponseEntity.ok(reviewService.search(searchRequest));
     }
 
-    @GetMapping("/review/{postId}")
-    public PostResponse get(@PathVariable Long postId) {
+    @GetMapping("/review/{reviewId}")
+    public ReviewResponse get(@PathVariable Long reviewId) {
 
-        return postService.get(postId);
+        return reviewService.get(reviewId);
         // 응답 전용 클래스를 만드는 것이 좋다.
     }
 
-    //조회 API
-    // 여러개의 글 조회 API (1개의 글 Post을 가져오는 기능)
-//    @GetMapping("/posts")
-//    public List<PostResponse> getList(@ModelAttribute SearchRequest postSearch) {
-//        return postService.getList(postSearch);
-//    }
-
-    @PatchMapping("/review/{postId}")
-    public void edit(@PathVariable Long postId, @RequestBody @Valid PostEditRequest request){
-        postService.edit(postId, request);
+    @PatchMapping("/review/{reviewId}")
+    public void edit(@PathVariable Long reviewId, @RequestBody @Valid ReviewEditRequest request){
+        reviewService.edit(reviewId, request);
     }
 
-    @DeleteMapping("/review/{postId}")
-    public void delete(@PathVariable Long postId){
-        postService.delete(postId);
+    @DeleteMapping("/review/{reviewId}")
+    public void delete(@PathVariable Long reviewId){
+        reviewService.delete(reviewId);
     }
 
 

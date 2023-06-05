@@ -1,5 +1,6 @@
 package com.ttt.capstone.domian;
 
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -23,7 +24,7 @@ public class Member implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    //    @Email
+    @Email
     private String email;
     private String password;
 

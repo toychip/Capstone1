@@ -1,5 +1,6 @@
 package com.ttt.capstone.controller;
 
+import com.ttt.capstone.naverblog.RegionResponse;
 import com.ttt.capstone.regionentity.*;
 import com.ttt.capstone.service.RegionService;
 import lombok.RequiredArgsConstructor;
@@ -130,10 +131,17 @@ public class RegionController {
         return regionService.getSejong(smallCode, district, PageRequest.of(page, size));
     }
 
+//    @GetMapping("/ulsan/company")
+//    public PageDto<Ulsan> getUlsan(@RequestParam String smallCode, @RequestParam Optional<String> district,
+//                                            @RequestParam(defaultValue = "0") int page,
+//                                            @RequestParam(defaultValue = "9") int size) {
+//        return regionService.getUlsan(smallCode, district, PageRequest.of(page, size));
+//    }
+
     @GetMapping("/ulsan/company")
-    public PageDto<Ulsan> getUlsan(@RequestParam String smallCode, @RequestParam Optional<String> district,
-                                            @RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "9") int size) {
+    public PageDto<RegionResponse<Ulsan>> getUlsan(@RequestParam String smallCode, @RequestParam Optional<String> district,
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "9") int size) {
         return regionService.getUlsan(smallCode, district, PageRequest.of(page, size));
     }
 }

@@ -1,13 +1,22 @@
 package com.ttt.capstone.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttt.capstone.controller.PageDto;
+import com.ttt.capstone.naverblog.ApiSearchBlog;
+import com.ttt.capstone.naverblog.NaverBlogData;
+import com.ttt.capstone.naverblog.RegionResponse;
 import com.ttt.capstone.regionentity.*;
 import com.ttt.capstone.regionrepository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -207,14 +216,49 @@ public class RegionService {
         return new PageDto<>(page);
     }
 
-    public PageDto<Ulsan> getUlsan(String smallCode, Optional<String> district, Pageable pageable) {
+    public PageDto<RegionResponse<Ulsan>> getUlsan(String smallCode, Optional<String> district, Pageable pageable) {
         Page<Ulsan> page;
         if (district.isPresent()) {
             page = ulsanRepository.findBySmallCodeAndRoadNameContaining(smallCode, district.get(), pageable);
-
         } else {
             page = ulsanRepository.findBySmallCode(smallCode, pageable);
         }
-        return new PageDto<>(page);
+
+        List<RegionResponse<Ulsan>> regionResponses = new ArrayList<>();
+        for (Ulsan ulsan : page) {
+            // Construct search query using StringBuilder
+            StringBuilder searchQuery = new StringBuilder();
+            searchQuery.append(ulsan.getName());
+
+            // Append branchName to searchQuery if it's not null or not blank
+            if (ulsan.getBranchName() != null && !ulsan.getBranchName().isBlank()) {
+                searchQuery.append(" ").append(ulsan.getBranchName());
+            }
+
+            // Append roadAddress to searchQuery
+            searchQuery.append(" ").append(ulsan.getRoadAddress());
+
+            // Fetch data from Naver Blog API with searchQuery
+            List<NaverBlogData> naverBlogData = fetchNaverBlogData(searchQuery.toString()); //, ulsan.getRoadAddress()
+
+            // Create a RegionResponse object
+            RegionResponse<Ulsan> regionResponse = new RegionResponse<>(ulsan, naverBlogData); // 순서 변경
+            regionResponses.add(regionResponse);
+        }
+
+        return new PageDto<>(new PageImpl<>(regionResponses, pageable, page.getTotalElements()));
+    }
+
+    private List<NaverBlogData> fetchNaverBlogData(String query) {
+        String jsonResult = ApiSearchBlog.searchBlog(query);
+
+        // JSON 문자열을 NaverBlogData 객체로 변환
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            NaverBlogData[] naverBlogDataArray = mapper.readValue(jsonResult, NaverBlogData[].class);
+            return Arrays.asList(naverBlogDataArray);
+        } catch (IOException e) {
+            throw new RuntimeException("JSON 파싱에 실패했습니다.", e);
+        }
     }
 }

@@ -261,6 +261,9 @@ public class RegionControllerTest {
         String district = "나주시";
         performRequestWithDistrict("/region/jeollanamdo/company", smallCode, district, page);
     }
+    
+    @Test
+    @DisplayName("입력 값")
 
     private void performRequest(String url, String smallCode, Long page) throws Exception {
         mockMvc.perform(get(url)

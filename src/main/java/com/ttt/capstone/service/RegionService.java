@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttt.capstone.controller.PageDto;
 import com.ttt.capstone.naverblog.ApiSearchBlog;
 import com.ttt.capstone.naverblog.NaverBlogData;
+import com.ttt.capstone.naverblog.NaverBlogSearchResult;
 import com.ttt.capstone.naverblog.RegionResponse;
 import com.ttt.capstone.regionentity.*;
 import com.ttt.capstone.regionrepository.*;
@@ -259,8 +260,8 @@ public class RegionService {
         // JSON 문자열을 NaverBlogData 객체로 변환
         ObjectMapper mapper = new ObjectMapper();
         try {
-            NaverBlogData[] naverBlogDataArray = mapper.readValue(jsonResult, NaverBlogData[].class);
-            return Arrays.asList(naverBlogDataArray);
+            NaverBlogSearchResult searchResult = mapper.readValue(jsonResult, NaverBlogSearchResult.class);
+            return searchResult.getItems();
         } catch (IOException e) {
             throw new RuntimeException("JSON 파싱에 실패했습니다.", e);
         }

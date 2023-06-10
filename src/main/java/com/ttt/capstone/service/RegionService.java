@@ -22,6 +22,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class RegionService {
+
+    private final ApiSearchBlog apiSearchBlog;
     private final SeoulRepository seoulRepository;
     private final BusanRepository busanRepository;
     private final ChungcheongbukdoRepository chungcheongbukdoRepository;
@@ -250,8 +252,10 @@ public class RegionService {
     }
 
     private List<NaverBlogData> fetchNaverBlogData(String query) {
-        String jsonResult = ApiSearchBlog.searchBlog(query);
+//        String display = "display=3&";
+        String jsonResult = apiSearchBlog.searchBlog(query);
 
+        System.out.println(jsonResult);
         // JSON 문자열을 NaverBlogData 객체로 변환
         ObjectMapper mapper = new ObjectMapper();
         try {

@@ -14,8 +14,6 @@ import java.util.Map;
 @Component
 public class ApiSearchBlog {
 
-//    private static final String clientId = "YOUR_CLIENT_ID"; //애플리케이션 클라이언트 아이디
-//    private static final String clientSecret = "YOUR_CLIENT_SECRET"; //애플리케이션 클라이언트 시크릿
     private final String clientId;
     private final String clientSecret;
 
@@ -33,7 +31,7 @@ public class ApiSearchBlog {
             throw new RuntimeException("검색어 인코딩 실패", e);
         }
 
-        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text;
+        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text + "&display=3";
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("X-Naver-Client-Id", clientId);

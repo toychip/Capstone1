@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.ttt'
-version = '0.7.5-FailedLoginResponseEntity'
+version = '0.8.0-NaverBlogVersion'
 sourceCompatibility = '17'
 
 configurations {

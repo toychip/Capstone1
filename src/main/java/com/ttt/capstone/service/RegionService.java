@@ -1,6 +1,8 @@
 package com.ttt.capstone.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.ttt.capstone.config.googleapi.RegionGoogleResponse;
 import com.ttt.capstone.controller.PageDto;
 import com.ttt.capstone.naverblog.ApiSearchBlog;
 import com.ttt.capstone.naverblog.NaverBlogData;
@@ -9,16 +11,15 @@ import com.ttt.capstone.naverblog.RegionResponse;
 import com.ttt.capstone.regionentity.*;
 import com.ttt.capstone.regionrepository.*;
 import lombok.RequiredArgsConstructor;
+import okhttp3.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.net.URLEncoder;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -208,15 +209,60 @@ public class RegionService {
         return new PageDto<>(page);
     }
 
-    public PageDto<Sejong> getSejong(String smallCode, Optional<String> district, Pageable pageable) {
+//    public PageDto<Sejong> getSejong(String smallCode, Optional<String> district, Pageable pageable) {
+//        Page<Sejong> page;
+//        if (district.isPresent()) {
+//            page = sejongRepository.findBySmallCodeAndRoadNameContaining(smallCode, district.get(), pageable);
+//
+//        } else {
+//            page = sejongRepository.findBySmallCode(smallCode, pageable);
+//        }
+//        return new PageDto<>(page);
+//    }
+
+    public PageDto<RegionGoogleResponse> getSejongWithAdditionalInfo(String smallCode, Optional<String> district, Pageable pageable) {
         Page<Sejong> page;
         if (district.isPresent()) {
             page = sejongRepository.findBySmallCodeAndRoadNameContaining(smallCode, district.get(), pageable);
-
         } else {
             page = sejongRepository.findBySmallCode(smallCode, pageable);
         }
-        return new PageDto<>(page);
+
+        List<RegionGoogleResponse> extendedDtos = new ArrayList<>();
+        for (Sejong sejong : page.getContent()) {
+
+            // Google Maps API를 호출하여 새로운 정보를 가져오기
+            String input = sejong.getName() + " " + sejong.getLocalAddress();
+            Map<String, Object> additionalInfo = callGoogleMapsApi(input);
+
+            // Builder 패턴을 사용하여 RegionGoogleResponse 객체 생성
+            RegionGoogleResponse dto = RegionGoogleResponse.builder()
+                    .number(sejong.getNumber())
+                    .name(sejong.getName())
+                    .branchName(sejong.getBranchName())
+                    .largeCode(sejong.getLargeCode())
+                    .largeName(sejong.getLargeName())
+                    .mediumCode(sejong.getMediumCode())
+                    .mediumName(sejong.getMediumName())
+                    .smallCode(sejong.getSmallCode())
+                    .smallName(sejong.getSmallName())
+                    .dongNumber(sejong.getDongNumber())
+                    .dongName(sejong.getDongName())
+                    .localAddress(sejong.getLocalAddress())
+                    .roadName(sejong.getRoadName())
+                    .roadAddress(sejong.getRoadAddress())
+                    .oldPostalCode(sejong.getOldPostalCode())
+                    .newPostalCode(sejong.getNewPostalCode())
+                    .longitude(sejong.getLongitude())
+                    .latitude(sejong.getLatitude())
+                    .rating(additionalInfo != null ? (Double) additionalInfo.get("rating") : null)
+                    .openingHours(additionalInfo != null ? (Map<String, Object>) additionalInfo.get("opening_hours") : null)
+                    .build();
+
+            extendedDtos.add(dto);
+        }
+
+        return new PageDto<>(new PageImpl<>(extendedDtos, pageable, page.getTotalElements()));
     }
 
     public PageDto<RegionResponse<Ulsan>> getUlsan(String smallCode, Optional<String> district, Pageable pageable) {
@@ -233,7 +279,6 @@ public class RegionService {
             StringBuilder searchQuery = new StringBuilder();
             searchQuery.append(ulsan.getName());
 
-            // Append branchName to searchQuery if it's not null or not blank
             if (ulsan.getBranchName() != null && !ulsan.getBranchName().isBlank()) {
                 searchQuery.append(" ").append(ulsan.getBranchName());
             }
@@ -244,7 +289,6 @@ public class RegionService {
             // Fetch data from Naver Blog API with searchQuery
             List<NaverBlogData> naverBlogData = fetchNaverBlogData(searchQuery.toString()); //, ulsan.getRoadAddress()
 
-            // Create a RegionResponse object
             RegionResponse<Ulsan> regionResponse = new RegionResponse<>(ulsan, naverBlogData); // 순서 변경
             regionResponses.add(regionResponse);
         }
@@ -253,11 +297,9 @@ public class RegionService {
     }
 
     private List<NaverBlogData> fetchNaverBlogData(String query) {
-//        String display = "display=3&";
         String jsonResult = apiSearchBlog.searchBlog(query);
 
         System.out.println(jsonResult);
-        // JSON 문자열을 NaverBlogData 객체로 변환
         ObjectMapper mapper = new ObjectMapper();
         try {
             NaverBlogSearchResult searchResult = mapper.readValue(jsonResult, NaverBlogSearchResult.class);
@@ -265,5 +307,45 @@ public class RegionService {
         } catch (IOException e) {
             throw new RuntimeException("JSON 파싱에 실패했습니다.", e);
         }
+    }
+
+    public Map<String, Object> callGoogleMapsApi(String input) {
+
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        try {
+            Request request = new Request.Builder()
+                    .url("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
+                            URLEncoder.encode(input, "UTF-8") +
+                            // "&inputtype=textquery&fields=%2Crating%2Copening_hours&key=AIzaSyBVfe9xwmzAu_VdaYCDYVuLTv990WZw43c")
+                            "&inputtype=textquery&fields=rating,opening_hours&key=AIzaSyBVfe9xwmzAu_VdaYCDYVuLTv990WZw43c")
+                    .get()
+                    .build();
+            Response response = client.newCall(request).execute();
+
+            String responseBody = response.body().string();
+
+            System.out.println("Google API Response: " + responseBody);
+
+            Gson gson = new Gson();
+            Map<String, Object> responseMap = gson.fromJson(responseBody, Map.class);
+
+
+            List<Map<String, Object>> candidates = (List<Map<String, Object>>) responseMap.get("candidates");
+            if (candidates != null && !candidates.isEmpty()) {
+                Map<String, Object> placeInfo = candidates.get(0);
+
+                // 필요한 정보를 직접 추출합니다.
+                Map<String, Object> result = new HashMap<>();
+                result.put("rating", placeInfo.get("rating"));
+                result.put("opening_hours", placeInfo.get("opening_hours"));
+                return result;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

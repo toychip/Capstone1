@@ -1,5 +1,6 @@
 package com.ttt.capstone.controller;
 
+import com.ttt.capstone.config.googleapi.RegionGoogleResponse;
 import com.ttt.capstone.naverblog.RegionResponse;
 import com.ttt.capstone.regionentity.*;
 import com.ttt.capstone.service.RegionService;
@@ -125,10 +126,10 @@ public class RegionController {
     }
 
     @GetMapping("/sejong/company")
-    public PageDto<Sejong> getSejong(@RequestParam String smallCode, @RequestParam Optional<String> district,
-                                            @RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "9") int size) {
-        return regionService.getSejong(smallCode, district, PageRequest.of(page, size));
+    public PageDto<RegionGoogleResponse> getSejong(@RequestParam String smallCode, @RequestParam Optional<String> district,
+                                                   @RequestParam(defaultValue = "0") int page,
+                                                   @RequestParam(defaultValue = "9") int size) {
+        return regionService.getSejongWithAdditionalInfo(smallCode, district, PageRequest.of(page, size));
     }
 
 //    @GetMapping("/ulsan/company")

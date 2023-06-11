@@ -25,7 +25,6 @@ public class ReviewController {
 
 
     @PostMapping("/review")
-//    public Map<String, String> post(@RequestBody @Valid PostCreateRequest request){
     public void post(@RequestBody @Valid ReviewCreateRequest request) {
         request.validate();
         reviewService.write(request);

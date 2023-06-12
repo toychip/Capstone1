@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -26,28 +27,19 @@ public class Review {
     private String writtenBy;
     private LocalDateTime writtenDateTime;
 
+    @ElementCollection
+    private List<String> imageUrls; // 새로운 필드 추가
+
     @Builder
-    public Review(String title, String content, Member member, String writtenBy) {
+    public Review(String title, String content, Member member, String writtenBy, List<String> imageUrls) {
         this.title = title;
         this.content = content;
         this.member = member;
         this.writtenBy = writtenBy;
         this.writtenDateTime = LocalDateTime.now();
+        this.imageUrls = imageUrls;
     }
 
-    public ReviewEditor.ReviewEditorBuilder toEditor(){
-        return ReviewEditor.builder()
-                .title(title)
-                .content(content);
-    }
-
-    public void edit(ReviewEditor reviewEditor, Member member, String writtenBy) {
-        title = reviewEditor.getTitle();
-        content = reviewEditor.getContent();
-        this.member = member;
-        this.writtenBy = writtenBy;
-        this.writtenDateTime = LocalDateTime.now();
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -57,5 +49,4 @@ public class Review {
         this.member = member;
         member.mappingReview(this);
     }
-
 }

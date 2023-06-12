@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.ttt'
-version = '0.8.0-NaverBlogVersion'
+version = '0.9.0-Nationwide'
 sourceCompatibility = '17'
 
 configurations {
@@ -22,7 +22,13 @@ repositories {
 }
 
 dependencies {
+
+//	aws 사용을 위한 spring-cloud 추가
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+
+//	GoogleMap 추가
 	implementation 'com.google.maps:google-maps-services:0.14.0'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -34,7 +40,6 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-test'
-//	implementation 'org.springframework.session:spring-session-jdbc'
 
 	implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
 

@@ -35,8 +35,9 @@ public class SecurityConfiguration {
                     .requestMatchers("/auth/login").permitAll() // 누구나 접근 가능
                     .requestMatchers("/").permitAll()
                     .requestMatchers("/region/**").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/advertisement").hasAuthority("CEO") // CEO 권한일때만 POST 가능
-                    .requestMatchers(HttpMethod.POST, "/review").hasAuthority("USER") // USER 권한일때만 POST 가능
+//                    .requestMatchers(HttpMethod.POST, "/advertisement").hasAuthority("CEO") // CEO 권한일때만 POST 가능
+                    .requestMatchers(HttpMethod.POST, "/review").hasAuthority("CEO") // CEO 권한일때만 POST 가능
+//                    .requestMatchers("/review").permitAll()// USER 권한일때만 POST 가능
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement()

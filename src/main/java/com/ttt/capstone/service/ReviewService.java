@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,17 +26,26 @@ import java.util.stream.Collectors;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final MemberRepository memberRepository;
+    private final S3Uploader s3Uploader;
     public void write(ReviewCreateRequest reviewCreateRequest){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();  // 현재 사용자의 email 얻기
         Member member = memberRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
 
+        List<String> imageUrls = null;
+        try {
+            imageUrls = s3Uploader.uploadMultipleFiles(reviewCreateRequest.getImages(), "review-images");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Review review = Review.builder()
                 .title(reviewCreateRequest.getTitle())
                 .content(reviewCreateRequest.getContent())
                 .member(member)
                 .writtenBy(member.getName())
+                .imageUrls(imageUrls) // imageUrls 필드에 S3에 업로드된 이미지들의 URL들을 설정합니다.
                 .build();
         reviewRepository.save(review);
     }
@@ -48,6 +58,7 @@ public class ReviewService {
                 .content(review.getContent())
                 .writtenBy(review.getWrittenBy())
                 .writtenDateTime(review.getWrittenDateTime())
+                .imageUrls(review.getImageUrls())
                 .build();
     }
 
@@ -62,21 +73,7 @@ public class ReviewService {
         return reviewRepository.getList(searchRequest).stream()
                 .map(ReviewResponse::new)
                 .collect(Collectors.toList());}
-    @Transactional
-    public void edit(Long id, ReviewEditRequest reviewEditRequest){
-        // 없는 id일경우
-        Review review = reviewRepository.findById(id).orElseThrow(PostNotFound::new);
 
-        Member currentMember = getCurrentMember();
-        if (!review.getMember().getId().equals(currentMember.getId())) {
-            throw new AccessDeniedException("게시물을 수정할 권한이 없습니다.");
-        }
-        ReviewEditor.ReviewEditorBuilder editorBuitor = review.toEditor();
-        ReviewEditor reviewEditor = editorBuitor.title(reviewEditRequest.getTitle())
-                .content(reviewEditRequest.getContent())
-                .build();
-        review.edit(reviewEditor, currentMember, currentMember.getName());
-    }
     public void delete(Long id) {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(PostNotFound::new);

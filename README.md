@@ -2,7 +2,7 @@
 전국 소상공인 사이트 프로젝트 api
 
 실행 결과
-배포 url : http://54.180.13.188/
+배포 url: http://54.180.13.188/
 
 |Method|URI|Description|비회원 접근 권한|JSON 변수 명|parameter|
 |---|---|---|---|---|---|

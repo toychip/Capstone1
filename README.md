@@ -5,7 +5,7 @@
 배포 url : http://54.180.13.188/
 
 |Method|URI|Description|비회원 접근 권한|JSON 변수 명|parameter|
-|---|---|---|---|
+|---|---|---|---|---|---|
 |GET|/|메인화면|O|-|-|
 |POST|/auth/signup|회원가입|O|name, email, password|-|
 |POST|/auth/login|로그인|O|username, password|-|

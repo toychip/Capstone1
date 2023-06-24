@@ -12,6 +12,7 @@
 |POST|/auth/login|로그인|O|username, password|-|
 |GET|/mypage|마이페이지|X|-|-|
 |POST|/posts|자유게시판-글 작성|X|title, content|-|
+|GET|/posts|자유게시판-글 목록 조회|X|-|page(optional), size(optional), title(optional), content(optional), writtenBy(optional)|
 |GET|/posts/{postId}|자유게시판-글 세부 조회|X|-|{postId}|
 |PATCH|/posts/{postId}|자유게시판-글 수정|X, 작성자 외 수정 불가|title, content|{postId}|
 |DELETE|/posts/{postId}|자유게시판-글 삭제|X, 작성자 외 삭제 불가|-|{postId}|
@@ -36,7 +37,7 @@
 |GET|/region/jeollanamdo/company|전남지역조회|X|-|smallCode, district, page(optional, default = 0), size(optional, default = 6)|
 |GET|/region/sejong/company|세종지역조회|X|-|smallCode, district, page(optional, default = 0), size(optional, default = 6)|
 |GET|/region/ulsan/company|울산지역조회|X|-|smallCode, district, page(optional, default = 0), size(optional, default = 6)|
-|GET|/posts|자유게시판-글 목록 조회|X|-|page(optional), size(optional), title(optional), content(optional), writtenBy(optional)|
+
 
 
 ![Image 2](result/2.jpg)

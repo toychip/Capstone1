@@ -7,7 +7,8 @@
 |Method|URI|Description|비회원 접근 권한|JSON 변수 명|parameter|
 |---|---|---|---|---|---|
 |GET|/|메인화면|O|-|-|
-|POST|/auth/signup|회원가입|O|name, email, password|-|
+|POST|/auth/signup|이용자 회원가입|O|name, email, password|-|
+|POST|/auth/signup-business|사장님 회원가입|O|name, email, password|-|
 |POST|/auth/login|로그인|O|username, password|-|
 |GET|/mypage|마이페이지|X|-|-|
 |POST|/posts|자유게시판-글 작성|X|title, content|-|
